@@ -11,4 +11,18 @@ class LoginController extends Controller
 
         return view('login');
     }
+
+    public function login_check(Request $request){
+      return  $this->validate($request, [
+            'username' => 'require',
+            'password' => 'require',
+        ]);
+
+
+    }
+
+    public function register(){
+
+        return view('register');
+    }
 }

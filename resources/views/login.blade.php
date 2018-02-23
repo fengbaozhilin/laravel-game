@@ -4,14 +4,13 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <title>沙发</title>
-
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="https://dn-phphub.qbox.me//assets/css/1e2676fd224cc66e5027-styles.css">
 </head>
 <body>
+
 
 <div class="col-md-4 col-md-offset-4 floating-box">
 <div class="panel panel-default">
@@ -20,16 +19,13 @@
     </div>
     <div class="panel-body">
 
-        <form method="POST" action="https://laravel-china.org/auth/login" accept-charset="UTF-8">
-            <input type="hidden" name="_token" value="AMtLLw8b9D2GRMh12KTr47yqfv9vn4lakGtsg6EY">
+        <form method="POST"  action="{{url('login_check')}}" accept-charset="UTF-8"  >
 
             <input type="hidden" name="remember" value="yes">
-
-
+            <input type="hidden" name="_token" value="{{csrf_token()}}"/>
             <div class="form-group ">
-                <label class="control-label" for="username">手 机 or 邮 箱</label>
-                <input class="form-control" name="username" type="text" value="" placeholder="请填写手机号或者邮箱">
-
+                <label class="control-label" for="username">邮 箱</label>
+                <input class="form-control" name="username" type="text" value="" placeholder="请填写邮箱">
             </div>
 
             <div class="form-group ">
@@ -41,7 +37,7 @@
                 <a class="no-pjax" href="https://laravel-china.org/auth/forget" style="color: #717573;font-size: 13px;">忘记密码？</a>
             </fieldset>
 
-            <button type="submit" class="btn btn-lg btn-success btn-block">
+            <button type="submit"  class="btn btn-lg btn-success btn-block">
                 <i class="fa fa-btn fa-sign-in"></i> 登录
             </button>
 
@@ -63,4 +59,20 @@
 </div>
 
 </body>
+<script>
+    function  check() {
+        if($('.username').val() == ''){
+           alert('1');
+
+        }else if($('.password').val() == ''){
+            alert('2');
+
+        }
+        else{
+            alert('3');
+
+        }
+
+    }
+</script>
 </html>
