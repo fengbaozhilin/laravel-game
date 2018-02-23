@@ -38,21 +38,21 @@ class Controller extends BaseController
 
     }
 
-    public function validate(Request $request, array $rules)
-    {
-        $validator = \Illuminate\Support\Facades\Validator::make($request->all(), $rules);
+        public function validate(Request $request, array $rules)
+        {
+            $validator = \Illuminate\Support\Facades\Validator::make($request->all(), $rules);
 
-        if ($validator->fails()) {
+            if ($validator->fails()) {
 
-            header('Content-Type:  application/json');
-            echo json_encode([
-                'code' => 500,
-                'message' => $validator->errors()->first(),
-            ]);
+                header('Content-Type:  application/json');
+                echo json_encode([
+                    'code' => 500,
+                    'message' => $validator->errors()->first(),
+                ]);
 
-            exit;
+                exit;
 
+            }
         }
-    }
 
 }
