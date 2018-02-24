@@ -19,13 +19,13 @@ class LoginController extends Controller
 
 
             $validator = Validator::make($request->all(), [
-                'username' => 'min:2',
-                'password' => 'min:2',
+                'username' => 'min:2|required',
+                'password' => 'min:2|required',
             ]);
             if ($validator->fails()) {
-                return $this->error();
+                return '<script>alert("error");window.history.go(-1);</script></script>';
             }
-            return $this->success();
+        return '<script>alert("success");window.history.go(-1);</script>';
 
     }
 
