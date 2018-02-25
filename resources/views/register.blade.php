@@ -31,7 +31,7 @@
 
                 <div class="form-group ">
                     <label class="control-label" for="username">邮箱</label>
-                    <input class="form-control" name="username" id="email" type="text" value="" placeholder="请填写邮箱" required>
+                    <input class="form-control" name="username" id="username" type="text" value="" placeholder="请填写邮箱" required>
 
                 </div>
 
@@ -49,7 +49,7 @@
                 <div class="form-group ">
                     <label class="control-label" for="code">邮箱验证码</label>
                     <div class="phone-input">
-                        <input class="form-control" name="code" type="text" value="" placeholder="请填写手机验证码" required style="width: 80%;display:inline;float: left" >
+                        <input class="form-control" name="code" type="text" value="" placeholder="请填写邮箱验证码" required style="width: 80%;display:inline;float: left" >
                         {{--<button id="code" class="btn btn-info" type="button" style="width: 20% ;display:inline;float: right">获取验证码</button>--}}
                         <input type="button" id="code" value="免费获取验证码"   class="btn btn-info" type="button" style="width: 20% ;display:inline;float: right" onclick="settime(this)"/>
                     </div>
@@ -65,103 +65,41 @@
 </div><script src="{{asset('js/jquery-1.12.4.min.js')}}"></script>
 <script>
 $.ajaxSetup({headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}});
-
-    function settime(val) {
-        var username = $('[name=username]').val();
-        var countdown = 60;
-
-
-
-        $.ajax({
-            type: 'post',
-            url: '{{url('mail/send')}}',
-            dataType: 'json',
-            data: {
-                username: username
-            },
-            success: function (res) {
-                if (res.code == 200) {
-                    if (countdown == 0) {
-                        val.removeAttribute("disabled");
-                        val.value = "免费获取验证码";
-                        countdown = 60;
-                    } else {
-                        val.setAttribute("disabled", true);
-                        val.value = "重新发送(" + countdown + ")";
-                        countdown--;
-                        setTimeout(function () {
-                            settime(val)
-                        }, 1000)
-                    }
-                    alert('success');
-
-                } else {
-                    alert('error');
-                }
+$("#code").click(function(){
+    var username = $('[name=username]').val();
+    $.ajax({
+        type: 'post',
+        url: '{{url('mail/send')}}',
+        dataType: 'json',
+        data: {
+            username: username
+        },
+        success: function (res) {
+            if (res.code == 200) {
+                alert('success');
+            } else {
+                alert('error');
             }
-        });
+        }
+    });
+});
 
-
+var countdown = 60;
+        $("#code").attr("disabled",false);
+        function settime(val) {
+        if (countdown == 0) {
+            val.removeAttribute("disabled");
+            val.value = "免费获取验证码";
+            countdown = 60;
+        } else {
+            val.setAttribute("disabled", true);
+            val.value = "重新发送(" + countdown + ")";
+            countdown--;
+            setTimeout(function () {
+                settime(val)
+            }, 1000)
+        }
     }
 </script>
-{{--<script>--}}
-    {{--function clearError() {--}}
-        {{--$('[name=phone]').parent().removeClass('has-error')--}}
-        {{--$('[name=phone]').parent().find('.help-block').remove()--}}
-        {{--$('[name=captcha]').parent().removeClass('has-error')--}}
-        {{--$('[name=captcha]').parent().find('.help-block').remove()--}}
-    {{--}--}}
-
-    {{--$('#code').click(function () {--}}
-        {{--$.ajax({--}}
-            {{--method: 'POST',--}}
-            {{--url: '/auth/verify-code',--}}
-            {{--data: {--}}
-                {{--phone: $('[name=phone]').val(),--}}
-                {{--captcha: $('[name=captcha]').val(),--}}
-            {{--},--}}
-        {{--}).done(function(data) {--}}
-            {{--clearError()--}}
-        {{--}).fail(function (data) {--}}
-            {{--clearError()--}}
-
-            {{--if (data.status == 422) {--}}
-                {{--var errors = data.responseJSON.errors--}}
-
-                {{--if (errors.phone) {--}}
-                    {{--$('[name=phone]').parent().find('.help-block').remove()--}}
-                    {{--$('[name=phone]').parent().addClass('has-error')--}}
-                    {{--$('[name=phone]').parent().append('<span class="help-block">' + errors.phone + '</span>')--}}
-                {{--}--}}
-
-                {{--if (errors.captcha) {--}}
-                    {{--$('[name=captcha]').parent().find('.help-block').remove()--}}
-                    {{--$('[name=captcha]').parent().addClass('has-error')--}}
-                    {{--$('[name=captcha]').parent().append('<span class="help-block">' + errors.captcha + '</span>')--}}
-                {{--}--}}
-
-                {{--$('#code').html('重新获取')--}}
-                {{--$('#code').prop('disabled', false)--}}
-                {{--clearInterval(interval)--}}
-            {{--}--}}
-        {{--}).always(function() {--}}
-            {{--var seconds = 60--}}
-
-            {{--var interval = setInterval(function () {--}}
-                {{--if (seconds == 0) {--}}
-                    {{--seconds = 60--}}
-                    {{--$('#code').html('重新获取')--}}
-                    {{--$('#code').prop('disabled', false)--}}
-                    {{--clearInterval(interval)--}}
-                {{--} else {--}}
-                    {{--$('#code').html(seconds + ' 秒')--}}
-                    {{--seconds ----}}
-                {{--}--}}
-            {{--}, 1000)--}}
-            {{--$('#code').prop('disabled', true)--}}
-        {{--});--}}
-    {{--})--}}
-{{--</script>--}}
-
 </body>
 </html>
