@@ -31,8 +31,11 @@
                 <div class="form-group ">
                     <label class="control-label" for="password">密 码</label>
                     <input class="form-control" name="password" id="password" type="password" value="" placeholder="请填写密码">
-
                 </div>
+                <div  id="errorMsg">
+                </div>
+             {{--   <div class="form-group " id="errorMsg">
+                </div>--}}
                 <fieldset class="form-group text-right">
                     <a class="no-pjax" href="https://laravel-china.org/auth/forget" style="color: #717573;font-size: 13px;">忘记密码？</a>
                 </fieldset>
@@ -64,19 +67,24 @@
     function checkForm() {
         var username = document.getElementById("username");
         var password = document.getElementById("password");
+        var reg = /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/;
         if (trim(username.value) == null || trim(username.value) == "") {
             username.focus();
             return false;
         }
-        if (trim(password.value) == null || trim(password.value) == "") {
+        else if (trim(password.value) == null || trim(password.value) == "") {
             password.focus();
             return false;
         }
-
+        else if(!reg.test(username.value)){
+            var divA = document.getElementById("errorMsg");
+            divA.innerHTML="<label style='color: #ff000b;font-size: large'>邮箱格式错误!!</label>";
+            return false;
+        }
+        else {
             return true;
-
+        }
     }
-
     function trim(str) { //删除左右两端的空格
         return str.replace(/(^\s*)|(\s*$)/g, "");
     }
