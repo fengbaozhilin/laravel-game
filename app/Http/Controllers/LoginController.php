@@ -27,6 +27,7 @@ class LoginController extends Controller
             }
         return '<script>alert("success");window.history.go(-1);</script>';
 
+
     }
 
     public function register()
