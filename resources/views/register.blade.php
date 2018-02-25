@@ -25,7 +25,7 @@
 
                 <div class="alert alert-warning">
 
-                    📱 非中国大陆号码需使用国际前缀，格式必须是以 + 开头并且没有空格，如：+886972812345
+                    📱 使用邮箱注册
 
                 </div>
 
@@ -39,23 +39,23 @@
                     <label for="captcha" class="control-label">图片验证码</label>
 
                     <div class="captcha-input">
-                        <input id="captcha" class="form-control" name="captcha" placeholder="请填写验证码" required>
-
-                        <img class="thumbnail captcha" src="https://laravel-china.org/captcha/flat?Nluwveni" onclick="this.src='/captcha/flat?'+Math.random()" title="点击图片重新获取验证码">
+                        <input id="captcha" class="form-control" name="captcha" placeholder="请填写验证码" required><br>
+                        <img class="thumbnail captcha" src="{{url('captcha_code')}}" onclick="this.src='captcha_code?'+Math.random();" title="点击图片重新获取验证码">
+                        <p  style="color: #5bc0de;font-size: 1.2em">点击图片刷新验证码</p>
 
                     </div>
                 </div>
 
                 <div class="form-group ">
-                    <label class="control-label" for="code">短信验证码</label>
+                    <label class="control-label" for="code">邮箱验证码</label>
                     <div class="phone-input">
-                        <input class="form-control" name="code" type="text" value="" placeholder="请填写手机验证码" required>
-                        <button id="code" class="btn btn-info" type="button">获取验证码</button>
+                        <input class="form-control" name="code" type="text" value="" placeholder="请填写手机验证码" required style="width: 80%;display:inline;float: left" >
+                        {{--<button id="code" class="btn btn-info" type="button" style="width: 20% ;display:inline;float: right">获取验证码</button>--}}
+                        <input type="button" id="code" value="免费获取验证码"   class="btn btn-info" type="button" style="width: 20% ;display:inline;float: right" onclick="settime(this)"/>
                     </div>
 
                 </div>
-
-                <button type="submit" class="btn btn-lg btn-success btn-block">
+                <button type="submit" class="btn btn-lg btn-success btn-block" style="margin-top: 15px;display:inline">
                     <i class="fa fa-btn fa-sign-in"></i> 注册
                 </button>
             </form>
@@ -65,28 +65,44 @@
 </div><script src="{{asset('js/jquery-1.12.4.min.js')}}"></script>
 <script>
 $.ajaxSetup({headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}});
-$(document).ready(function () {
 
-    $('#code').click(function () {
+    function settime(val) {
         var username = $('[name=username]').val();
+        var countdown = 60;
+
+
+
         $.ajax({
             type: 'post',
             url: '{{url('mail/send')}}',
             dataType: 'json',
             data: {
-                username:username
+                username: username
             },
             success: function (res) {
                 if (res.code == 200) {
-                 alert('success');
-                } else{
+                    if (countdown == 0) {
+                        val.removeAttribute("disabled");
+                        val.value = "免费获取验证码";
+                        countdown = 60;
+                    } else {
+                        val.setAttribute("disabled", true);
+                        val.value = "重新发送(" + countdown + ")";
+                        countdown--;
+                        setTimeout(function () {
+                            settime(val)
+                        }, 1000)
+                    }
+                    alert('success');
+
+                } else {
                     alert('error');
                 }
             }
         });
 
-    })
-});
+
+    }
 </script>
 {{--<script>--}}
     {{--function clearError() {--}}
