@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>沙发</title>
     <!-- Fonts -->
@@ -18,9 +19,8 @@
         </div>
         <div class="panel-body">
 
-            <form method="POST" action="https://laravel-china.org/auth/register" accept-charset="UTF-8">
-                <input type="hidden" name="_token" value="XhrEwsj8lv5zepEm6nYRetXdghdMC3e1SVetLRuH">
-
+            <form method="POST" action="{{url('register_check')}}" accept-charset="UTF-8">
+                <input type="hidden" name="_token" value="{{csrf_token()}}"/>
                 <input type="hidden" name="remember" value="yes">
 
                 <div class="alert alert-warning">
@@ -30,8 +30,8 @@
                 </div>
 
                 <div class="form-group ">
-                    <label class="control-label" for="phone">手 机</label>
-                    <input class="form-control" name="phone" type="text" value="" placeholder="请填写手机号码" required>
+                    <label class="control-label" for="username">邮箱</label>
+                    <input class="form-control" name="username" id="email" type="text" value="" placeholder="请填写邮箱" required>
 
                 </div>
 
@@ -62,8 +62,90 @@
 
         </div>
     </div>
-</div>
+</div><script src="{{asset('js/jquery-1.12.4.min.js')}}"></script>
+<script>
+$.ajaxSetup({headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}});
+$(document).ready(function () {
 
+    $('#code').click(function () {
+        var username = $('[name=username]').val();
+        $.ajax({
+            type: 'post',
+            url: '{{url('mail/send')}}',
+            dataType: 'json',
+            data: {
+                username:username
+            },
+            success: function (res) {
+                if (res.code == 200) {
+                 alert('success');
+                } else{
+                    alert('error');
+                }
+            }
+        });
+
+    })
+});
+</script>
+{{--<script>--}}
+    {{--function clearError() {--}}
+        {{--$('[name=phone]').parent().removeClass('has-error')--}}
+        {{--$('[name=phone]').parent().find('.help-block').remove()--}}
+        {{--$('[name=captcha]').parent().removeClass('has-error')--}}
+        {{--$('[name=captcha]').parent().find('.help-block').remove()--}}
+    {{--}--}}
+
+    {{--$('#code').click(function () {--}}
+        {{--$.ajax({--}}
+            {{--method: 'POST',--}}
+            {{--url: '/auth/verify-code',--}}
+            {{--data: {--}}
+                {{--phone: $('[name=phone]').val(),--}}
+                {{--captcha: $('[name=captcha]').val(),--}}
+            {{--},--}}
+        {{--}).done(function(data) {--}}
+            {{--clearError()--}}
+        {{--}).fail(function (data) {--}}
+            {{--clearError()--}}
+
+            {{--if (data.status == 422) {--}}
+                {{--var errors = data.responseJSON.errors--}}
+
+                {{--if (errors.phone) {--}}
+                    {{--$('[name=phone]').parent().find('.help-block').remove()--}}
+                    {{--$('[name=phone]').parent().addClass('has-error')--}}
+                    {{--$('[name=phone]').parent().append('<span class="help-block">' + errors.phone + '</span>')--}}
+                {{--}--}}
+
+                {{--if (errors.captcha) {--}}
+                    {{--$('[name=captcha]').parent().find('.help-block').remove()--}}
+                    {{--$('[name=captcha]').parent().addClass('has-error')--}}
+                    {{--$('[name=captcha]').parent().append('<span class="help-block">' + errors.captcha + '</span>')--}}
+                {{--}--}}
+
+                {{--$('#code').html('重新获取')--}}
+                {{--$('#code').prop('disabled', false)--}}
+                {{--clearInterval(interval)--}}
+            {{--}--}}
+        {{--}).always(function() {--}}
+            {{--var seconds = 60--}}
+
+            {{--var interval = setInterval(function () {--}}
+                {{--if (seconds == 0) {--}}
+                    {{--seconds = 60--}}
+                    {{--$('#code').html('重新获取')--}}
+                    {{--$('#code').prop('disabled', false)--}}
+                    {{--clearInterval(interval)--}}
+                {{--} else {--}}
+                    {{--$('#code').html(seconds + ' 秒')--}}
+                    {{--seconds ----}}
+                {{--}--}}
+            {{--}, 1000)--}}
+            {{--$('#code').prop('disabled', true)--}}
+        {{--});--}}
+    {{--})--}}
+{{--</script>--}}
 
 </body>
 </html>

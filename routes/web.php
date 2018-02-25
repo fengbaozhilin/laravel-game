@@ -13,14 +13,11 @@
 
 
 
-Route::get('login', function () {
-    return view('login');
-});
+Route::get('login','LoginController@login');
+Route::get('register','LoginController@register');
 Route::post('login_check','LoginController@login_check');
+Route::post('register_check','LoginController@register_check');
 
-Route::get('register', function () {
-    return view('register');
-});
 
-Route::get('mail/send','MailController@send');
+Route::post('mail/send','MailController@send');
 
