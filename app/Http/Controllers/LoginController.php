@@ -6,7 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Validator;
-use Mews\Captcha\Facades\Captcha;
+
 
 class LoginController extends Controller
 {
@@ -46,11 +46,17 @@ class LoginController extends Controller
 
 
     public  function username_check(Request $request){
-     if($user = User::where('username',$request->username)->first()){
+         if($user = User::where('username',$request->username)->first()){
          return $this->error();
-     }else{
-         return $this->success();
-     }
+        }
+
+        if($request->code == Cache::get('validate_code') && $request->username == Cache::get('username')){
+            User::create(['username'=>$request->username,'password'=>$request->password]);
+            return $this->success();
+        }else {
+            return $this->error('120');
+        }
+
 
     }
 
@@ -68,18 +74,20 @@ class LoginController extends Controller
 
             return '<script>alert("错误,请重试");window.history.go(-1);</script></script>';
         }
-        if(!$user = User::where('username',$request->username)->first()){
-            if($request->code !== Cache::get('validate_code')){
-                return '<script>alert("邮箱验证码错误");window.history.go(-1);</script>';
-            }else {
-                User::create(['username'=>$request->username,'password'=>$request->password]);
-                return '<script>alert("成功");window.history.go(-1);</script>';
-            }
-        }else{
+        if($user = User::where('username',$request->username)->first()) {
             return '<script>alert("用户已经存在");window.history.go(-1);</script>';
         }
 
-    }
+        if($request->code == Cache::get('validate_code') && $request->username = Cache::get('username')){
+                var_dump( $request->username);
+                User::create(['username'=>$request->username,'password'=>$request->password]);
+                return '<script>alert("成功");window.history.go(-1);</script>';
+            }else {
+                return '<script>alert("邮箱验证码错误");window.history.go(-1);</script>';
+            }
+        }
+
+
 
 
 

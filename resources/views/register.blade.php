@@ -19,7 +19,7 @@
         </div>
         <div class="panel-body">
 
-            <form method="POST" action="{{url('register_check')}}" accept-charset="UTF-8" onsubmit="return checkForm()">
+
                 <input type="hidden" name="_token" value="{{csrf_token()}}"/>
                 <input type="hidden" name="remember" value="yes">
 
@@ -72,10 +72,10 @@
                 {{--</div>--}}
 
 
-                <button type="submit" class="btn btn-lg btn-success btn-block" style="margin-top: 15px;display:inline">
+                <button type="submit" class="btn btn-lg btn-success btn-block" style="margin-top: 15px;display:inline" onclick="checkForm()">
                     <i class="fa fa-btn fa-sign-in"></i> 注册
                 </button>
-            </form>
+
 
         </div>
     </div>
@@ -100,9 +100,8 @@
                 },
                 success: function (res) {
                     if (res.code == 200) {
-
                     } else {
-                        alert('发送失败请重试');
+                        alert('发送失败请重试');window.history.go(-1);
                     }
                 }
             });
@@ -134,6 +133,7 @@
     function checkForm() {
         var username = $('[name=username]').val();
         var password = $('[name=password]').val();
+        var code = $('[name=code]').val();
         var errorMsgUsername = document.getElementById("errorMsgUsername");
         var errorMsgPassword = document.getElementById("errorMsgPassword");
         var reg = /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/;
@@ -153,7 +153,9 @@
                 dataType: 'json',
                 async:false,
                 data: {
-                    username: username
+                    username : username,
+                    password : password,
+                    code : code
                 },
                 success: function (res) {
                     if (res.code == 100) {
@@ -161,7 +163,11 @@
                         errorMsgUsername.innerHTML = "该邮箱已被注册！";
                         errorMsgUsername.style.visibility = "visible";
                         return false;
-                    } else {
+                    } else if(res.code==120){
+                alert('验证码错误');
+                return false;
+            }
+                    else {
                         //隐藏span
                         flag=1;
                         errorMsgUsername.style.visibility = "hidden";

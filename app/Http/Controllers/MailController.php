@@ -15,7 +15,8 @@ class MailController extends Controller
         $name = '用户';
         $to = $request->username;
         $validate_code= str_random(4);
-        Cache::put('validate_code',$validate_code,60);
+        Cache::put('validate_code',$validate_code,1);
+        Cache::put('username',$to,1);
         // Mail::send()的返回值为空，所以可以其他方法进行判断
         try {
             Mail::send('email', ['name' => $name,'validate_code'=>$validate_code], function ($message) use ($to){
