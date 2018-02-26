@@ -13,11 +13,11 @@ class Controller extends BaseController
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
 
-    public function error($message='')
+    public function error($code='100',$message='')
     {
 
         $error = [
-            'code' => 100,
+            'code' => $code,
             'message' => $message
         ];
 

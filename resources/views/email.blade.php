@@ -1,3 +1,2 @@
-
-{{$name}}你好，这是一封测试文件,
-你的验证码是{{$validate_code}}。
+你的验证码是<p style="font-size: xx-large">{{$validate_code}}</p>
+{{$name}}你好

@@ -12,7 +12,7 @@ class MailController extends Controller
     //
     public function send(Request $request)
     {
-        $name = '用户您好';
+        $name = '用户';
         $to = $request->username;
         $validate_code= str_random(4);
         Cache::put('validate_code',$validate_code,60);
@@ -26,7 +26,6 @@ class MailController extends Controller
            return $this->error();
         }
         return $this->success();
-      //  dd(Mail::failures());
     }
 
 
