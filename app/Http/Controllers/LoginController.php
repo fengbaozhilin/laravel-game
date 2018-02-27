@@ -46,6 +46,15 @@ class LoginController extends Controller
 
 
     public  function username_check(Request $request){
+        $validator = Validator::make($request->all(), [
+            'username' => 'required|email',
+            'password' => 'required',
+            'code' => 'required',
+        ]);
+        if ($validator->fails()) {
+            return $this->error('150');
+        }
+
          if($user = User::where('username',$request->username)->first()){
          return $this->error();
         }
@@ -63,34 +72,40 @@ class LoginController extends Controller
     /**注册检测
      * @param Request $request
      */
-    public  function  register_check(Request $request){
-
-        $validator = Validator::make($request->all(), [
-            'username' => 'required|email',
-            'password' => 'required',
-            'code' => 'required',
-        ]);
-        if ($validator->fails()) {
-
-            return '<script>alert("错误,请重试");window.history.go(-1);</script></script>';
-        }
-        if($user = User::where('username',$request->username)->first()) {
-            return '<script>alert("用户已经存在");window.history.go(-1);</script>';
-        }
-
-        if($request->code == Cache::get('validate_code') && $request->username = Cache::get('username')){
-                var_dump( $request->username);
-                User::create(['username'=>$request->username,'password'=>$request->password]);
-                return '<script>alert("成功");window.history.go(-1);</script>';
-            }else {
-                return '<script>alert("邮箱验证码错误");window.history.go(-1);</script>';
-            }
-        }
-
-
+//    public  function  register_check(Request $request){
+//
+//        $validator = Validator::make($request->all(), [
+//            'username' => 'required|email',
+//            'password' => 'required',
+//            'code' => 'required',
+//        ]);
+//        if ($validator->fails()) {
+//
+//            return '<script>alert("错误,请重试");window.history.go(-1);</script></script>';
+//        }
+//        if($user = User::where('username',$request->username)->first()) {
+//            return '<script>alert("用户已经存在");window.history.go(-1);</script>';
+//        }
+//
+//        if($request->code == Cache::get('validate_code') && $request->username = Cache::get('username')){
+//                var_dump( $request->username);
+//                User::create(['username'=>$request->username,'password'=>$request->password]);
+//                return '<script>alert("成功");window.history.go(-1);</script>';
+//            }else {
+//                return '<script>alert("邮箱验证码错误");window.history.go(-1);</script>';
+//            }
+//        }
 
 
 
 
+public  function test(){
+    date_default_timezone_set("PRC");
+    $time = strtotime("2018-02-27 10:19:00");
+  return time()- $time;
+}
+
+// 1519697885
+// 1519697880
 
 }

@@ -11,7 +11,7 @@
 |
 */
 
-
+Route::get('test','LoginController@test');
 
 Route::get('login','LoginController@login');
 Route::get('register','LoginController@register');
