@@ -1,16 +1,5 @@
-<!doctype html>
-<html lang="{{ app()->getLocale() }}">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>沙发</title>
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="https://dn-phphub.qbox.me//assets/css/1e2676fd224cc66e5027-styles.css">
-</head>
-<body>
+@include('header')
+
 
 <div class="col-md-4 col-md-offset-4 floating-box">
     <div class="panel panel-default">
@@ -82,7 +71,8 @@
         </div>
     </div>
 </div>
-<script src="{{asset('js/jquery-1.12.4.min.js')}}"></script>
+
+
 <script>
     $.ajaxSetup({headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}});
     //发送邮件
@@ -192,5 +182,5 @@
 
     }
 </script>
-</body>
-</html>
+
+@extends('footer')

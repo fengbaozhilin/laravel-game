@@ -1,17 +1,5 @@
-<!doctype html>
-<html lang="{{ app()->getLocale() }}">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="csrf-token" content="{{ csrf_token() }}" />
-    <title>沙发</title>
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="https://dn-phphub.qbox.me//assets/css/1e2676fd224cc66e5027-styles.css">
-</head>
-<body>
 
+@include('header')
 
 <div class="col-md-4 col-md-offset-4 floating-box">
     <div class="panel panel-default">
@@ -62,7 +50,7 @@
     </div>
 </div>
 
-</body>
+
 <script type="text/javascript">
     function checkForm() {
         var username = document.getElementById("username");
@@ -89,4 +77,5 @@
         return str.replace(/(^\s*)|(\s*$)/g, "");
     }
 </script>
-</html>
+
+@extends('footer')
