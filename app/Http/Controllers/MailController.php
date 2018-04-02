@@ -14,6 +14,7 @@ class MailController extends Controller
     {
         date_default_timezone_set("PRC");
 
+        //时间判断
         if(time()-Cache::get('send_time')<60){
 
             return $this->error('120');
@@ -25,7 +26,8 @@ class MailController extends Controller
 
         $validate_code= str_random(4);
 
-        Cache::put('validate_code',$validate_code,2);
+        //cache存储验证码
+        Cache::put($to,$validate_code,2);
 
         Cache::put('username',$to,2);
         // Mail::send()的返回值为空，所以可以其他方法进行判断

@@ -13,13 +13,19 @@
 
 Route::get('test','LoginController@test');
 
-Route::get('login','LoginController@login');
-Route::get('register','LoginController@register');
-Route::post('username_check','LoginController@username_check');
+Route::get('/','IndexController@index');
 
-Route::post('login_check','LoginController@login_check');
-Route::post('register_check','LoginController@register_check');
-Route::get('captcha_code','CaptchaController@captcha_code');
+Route::get('login','LoginController@login');          //登陆
 
-Route::post('mail/send','MailController@send');
+Route::get('register','LoginController@register');         //注册
+
+Route::post('username_check','LoginController@username_check');  //检测用户是否重复
+
+Route::post('login_check','LoginController@login_check');      //登陆检测
+
+Route::post('register_check','LoginController@register_check');  //注册检测
+
+Route::get('captcha_code','CaptchaController@captcha_code');   //验证码
+
+Route::post('mail/send','MailController@send');   //邮件发送
 

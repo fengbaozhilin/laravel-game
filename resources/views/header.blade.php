@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="{{app()->getLocale()}}">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -30,13 +30,13 @@
 
         <div id="top-navbar-collapse" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li class=" active"><a href="https://laravel-china.org/topics">社区</a></li>
+                <li class=" active"><a href="https://laravel-china.org/topics">综合</a></li>
 
-                <li class=""><a href="https://laravel-china.org/categories/1">招聘</a></li>
+                <li class=""><a href="https://laravel-china.org/categories/1">贴吧</a></li>
 
-                <li class=""><a href="https://laravel-china.org/categories/10">头条</a></li>
+                <li class=""><a href="https://laravel-china.org/categories/10">新闻</a></li>
 
-                <li class=""><a href="https://laravel-china.org/categories/4">问答</a></li>
+                <li class=""><a href="https://laravel-china.org/categories/4">留言</a></li>
 
                 <li>
                     <a class="no-pjax" href="https://laravel-china.org/courses">教程</a>

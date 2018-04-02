@@ -78,4 +78,4 @@
     }
 </script>
 
-@extends('footer')
+@include('footer')
