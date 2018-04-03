@@ -42,6 +42,11 @@ return [
     */
 
     'disks' => [
+        'admin' => [
+            'driver' => 'local',
+            'root' => public_path(),
+            'visibility' => 'public',
+        ],
 
         'local' => [
             'driver' => 'local',
