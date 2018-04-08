@@ -1,8 +1,8 @@
 
 @include('header')
-
+<div class="container main-container ">
 <div class="col-md-4 col-md-offset-4 floating-box">
-    <div class="panel panel-default">
+    <div class="panel panel-default"  style="width:500px">
         <div class="panel-heading">
             <h3 class="panel-title">请登录</h3>
         </div>
@@ -48,6 +48,7 @@
 
         </div>
     </div>
+</div>
 </div>
 
 

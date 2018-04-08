@@ -9,8 +9,11 @@
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="https://dn-phphub.qbox.me//assets/css/1e2676fd224cc66e5027-styles.css">
+    <link rel="stylesheet" href="{{asset('css/message.css')}}">
     <script src="{{asset('js/jquery-1.12.4.min.js')}}"></script>
+    <script src="{{asset('js/message.js')}}"></script>
 </head>
+
 <body>
 <div role="navigation" class="navbar navbar-default topnav">
     <div class="container">
@@ -30,23 +33,9 @@
 
         <div id="top-navbar-collapse" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li class=" active"><a href="https://laravel-china.org/topics">综合</a></li>
-
-                <li class=""><a href="https://laravel-china.org/categories/1">贴吧</a></li>
-
-                <li class=""><a href="https://laravel-china.org/categories/10">新闻</a></li>
-
-                <li class=""><a href="https://laravel-china.org/categories/4">留言</a></li>
-
-                <li>
-                    <a class="no-pjax" href="https://laravel-china.org/courses">教程</a>
-                </li>
-
-
-                <li class="nav-docs hidden-sm"><a href="https://laravel-china.org/docs">文档</a></li>
-
-                <li class=""><a href="https://laravel-china.org/categories/12">翻译</a></li>
-
+                @foreach($category as $value)
+                    <li class=""><a href="https://laravel-china.org/topics">{{$value->name}}</a></li>
+                @endforeach
 
 
 
@@ -62,18 +51,40 @@
                     </div>
                 </form>
 
+                @if(session('login_info') == 'success')
+                    <ul class="nav navbar-nav github-login" style="margin-top: 12px">
+                        <a href="#" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="dLabel">
+                            <img class="avatar-topnav" alt="hzjdhr" src="https://lccdn.phphub.org/uploads/avatars/21030_1515634349.jpg?imageView2/1/w/100/h/100">
+                            {{session('username')}}
+                            <span class="caret"></span>
+                        </a>
+                    </ul>
+                    @else
                 <ul class="nav navbar-nav github-login" >
-                    <a href="https://laravel-china.org/auth/login" class="btn btn-default login-btn no-pjax">
+                    <a href="{{url('login')}}" class="btn btn-default login-btn no-pjax">
                         <i class="fa fa-user"></i>
                         登 录
                     </a>
-                    <a href="https://laravel-china.org/auth/register" class="btn btn-default login-btn no-pjax">
+                    <a href="{{url('register')}}" class="btn btn-default login-btn no-pjax">
                         <i class="fa fa-user-plus"></i>
                         注 册
                     </a>
                 </ul>
+@endif
+
             </div>
         </div>
 
     </div>
 </div>
+@if(session('msg_status') == 100)
+<script>
+    $.showmessage("操作成功");
+</script>
+   {{\Illuminate\Support\Facades\Session::forget('msg_status')}}
+    @elseif(session('msg_status') == 200)
+        <script>
+            $.showmessage({'message':'操作失败','type':'error'});
+        </script>
+   {{\Illuminate\Support\Facades\Session::forget('msg_status')}}
+        @endif

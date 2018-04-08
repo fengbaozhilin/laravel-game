@@ -45,6 +45,10 @@ class LoginController extends Controller
     }
 
 
+    /**注册检验
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public  function username_check(Request $request){
         $validator = Validator::make($request->all(), [
             'username' => 'required|email',
@@ -56,11 +60,16 @@ class LoginController extends Controller
         }
 
          if($user = User::where('username',$request->username)->first()){
-         return $this->error();
+         return $this->error();      //如果用户名重复返回error
         }
 
         if($request->code == Cache::get($request->username) && $request->username == Cache::get('username')){
-            User::create(['username'=>$request->username,'password'=>$request->password]);
+            User::create(['username'=>$request->username,'password'=>$request->password,'avatar'=>'https://lccdn.phphub.org/uploads/avatars/21030_1515634349.jpg?imageView2/1/w/100/h/100']);
+
+            $this->msg_status(); //登陆状态
+
+            session(['login_info'=>'success','username'=>$request->username,'avatar'=>'https://lccdn.phphub.org/uploads/avatars/21030_1515634349.jpg?imageView2/1/w/100/h/100']);
+            //验证通过,保存success
             return $this->success();
         }else {
             return $this->error('120');

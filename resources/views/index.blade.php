@@ -1,6 +1,7 @@
 
 
 @include('header')
+
 <div class="container main-container ">
 <div class="col-md-9 topics-index main-col">
 

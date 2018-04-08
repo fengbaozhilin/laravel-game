@@ -1,8 +1,8 @@
 @include('header')
 
-
+<div class="container main-container ">
 <div class="col-md-4 col-md-offset-4 floating-box">
-    <div class="panel panel-default">
+    <div class="panel panel-default" style="width:500px">
         <div class="panel-heading">
             <h3 class="panel-title">请注册</h3>
         </div>
@@ -34,7 +34,7 @@
                     <input class="form-control" name="code" type="text" value="" placeholder="请填写邮箱验证码" required
                            style="width: 80%;display:inline;float: left">
                     {{--<button id="code" class="btn btn-info" type="button" style="width: 20% ;display:inline;float: right">获取验证码</button>--}}
-                    <input type="button" id="code" value="免费获取验证码" class="btn btn-info" type="button"
+                    <input type="button" id="code" value="获取验证码" class="btn btn-info" type="button"
                            style="width: 20% ;display:inline;float: right" onclick="settime(this)"/>
                 </div>
 
@@ -71,7 +71,7 @@
         </div>
     </div>
 </div>
-
+</div>
 
 <script>
     $.ajaxSetup({headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}});
@@ -112,7 +112,7 @@
         var username = $('[name=username]').val();
         if (countdown == 0) {
             val.removeAttribute("disabled");
-            val.value = "免费获取验证码";
+            val.value = "获取验证码";
             countdown = 60;
         } else {
             val.setAttribute("disabled", true);
@@ -172,7 +172,7 @@
                         //隐藏span
                         errorMsgUsername.style.visibility = "hidden";
                         errorMsgCode.style.visibility = "hidden";
-                        alert('666');
+                        window.location.href="/";
 
                     }
                 }

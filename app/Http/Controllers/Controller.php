@@ -55,4 +55,105 @@ class Controller extends BaseController
             }
         }
 
+    public function getAuthenticatedUser()
+    {
+        try {
+
+            if (!$user = JWTAuth::parseToken()->authenticate()) {
+                return response()->json(['user_not_found'], 404);
+            }
+        } catch (\Exception $e) {
+            return response()->json(['token_absent'], $e->getStatusCode());
+        }
+        // the token is valid and we have found the user via the sub claim
+        return $user;
+    }
+
+
+    public function base64_upload($base64)
+    {
+        //取出base64字符串
+        if (strstr($base64, ",")) {
+
+            $image = explode(',', $base64);
+
+            $image = $image[1];
+
+        }
+        $path = "uploads/sign/" . date('YmdHis', time());
+        //创建文件夹
+        if (!file_exists($path)) {
+            mkdir($path, 0700, true);
+        }
+        $image = base64_decode($image);
+
+        $image_path = $path . '/' . uniqid() . str_random(5) . ".png";
+        if (file_put_contents($image_path, $image)) {
+
+            return $image_path;
+        }
+        return false;
+
+    }
+
+    /**二维数组排序
+     * @param $key排序字段
+     * @param int $sort SORT_ASC 升序 ，SORT_DESC 降序
+     * @param $arr二维数组
+     * @return array
+     */
+    public function arr_sort($key, $sort = SORT_ASC, $arr)
+    {
+        $result = array();
+        array_column($arr,$key);
+        foreach ($arr as $vo) {
+            $result[] = $vo[$key];
+        }
+        array_multisort($result, $sort, $arr);
+        return $arr;
+    }
+
+    /**二维数组排序
+     * @param $key排序字段
+     * @param int $sort SORT_ASC 升序 ，SORT_DESC 降序
+     * @param $arr二维数组
+     * @return array
+     */
+    public function arr_sort2($key, $sort = SORT_ASC, $arr)
+    {
+        array_multisort( array_column($arr,$key), $sort, $arr);
+        return $arr;
+    }
+
+
+    /**分组函数
+     * @param $arr数组
+     * @param $key分组字段
+     * @return array
+     */
+    public function array_group_by($arr, $key)
+    {
+
+        $grouped = [];
+        foreach ($arr as $value) {
+            $grouped[$value[$key]][] = $value;
+        }
+        if (func_num_args() > 2) {
+            $args = func_get_args();
+            foreach ($grouped as $key => $value) {
+                $parms = array_merge([$value], array_slice($args, 2, func_num_args()));
+                $grouped[$key] = call_user_func_array('array_group_by', $parms);
+            }
+        }
+        return $grouped;
+
+    }
+
+    public function msg_status($msg_status =100){
+        session(['msg_status'=>$msg_status]);
+        return true;
+    }
+
+
+
 }
