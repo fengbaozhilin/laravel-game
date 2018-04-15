@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="{{asset('css/message.css')}}">
     <script src="{{asset('js/jquery-1.12.4.min.js')}}"></script>
     <script src="{{asset('js/message.js')}}"></script>
+    <script src="{{asset('js/unslider.min.js')}}"></script>
 </head>
 
 <body>

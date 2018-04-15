@@ -13,7 +13,7 @@
 
 Route::get('test','LoginController@test');
 
-Route::get('/','IndexController@index');
+Route::get('/','IndexController@index');            //首页
 
 Route::get('login','LoginController@login');          //登陆
 
@@ -29,3 +29,4 @@ Route::get('captcha_code','CaptchaController@captcha_code');   //验证码
 
 Route::post('mail/send','MailController@send');   //邮件发送
 
+Route::get('articleDetail/{id}','ArticleController@articleDetail');   //文章详情

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
@@ -149,9 +150,29 @@ class Controller extends BaseController
 
     }
 
+    //状态
     public function msg_status($msg_status =100){
         session(['msg_status'=>$msg_status]);
         return true;
+    }
+
+//获取当前用户信息
+    public  function  getUser(){
+
+       $user_id =  session('user_id');
+
+       $user_info = User::find($user_id);
+
+       return $user_info;
+
+    }
+//获取指定用户信息
+    public  function  userinfo($user_id){
+
+       $user_info =  User::find($user_id);
+
+        return $user_info;
+
     }
 
 
