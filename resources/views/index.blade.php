@@ -38,11 +38,10 @@
         <div class="box text-center site-intro rm-link-color" style="box-shadow: 0 1px 0 0 #ddd, 0 0 0 1px #ddd;">
             <div class="banner" id="b04">
                 <ul>
-                    <li><img src="https://lccdn.phphub.org/uploads/avatars/21030_1515634349.jpg?imageView2/1/w/100/h/100" alt="" width="640" height="480" ></li>
-                    <li><img src="https://lccdn.phphub.org/uploads/avatars/21030_1515634349.jpg?imageView2/1/w/100/h/100" alt="" width="640" height="480" ></li>
-                    <li><img src="https://lccdn.phphub.org/uploads/avatars/21030_1515634349.jpg?imageView2/1/w/100/h/100" alt="" width="640" height="480" ></li>
-                    <li><img src="https://lccdn.phphub.org/uploads/avatars/21030_1515634349.jpg?imageView2/1/w/100/h/100" alt="" width="640" height="480" ></li>
-                    <li><img src="https://lccdn.phphub.org/uploads/avatars/21030_1515634349.jpg?imageView2/1/w/100/h/100" alt="" width="640" height="480" ></li>
+                 @foreach($articles_indexs as $articles_index)
+                    <li><a href="{{url('login')}}"><img src="{{$articles_index->thumb?$articles_index->thumb:'https://ss0.bdstatic.com/94oJfD_bAAcT8t7mm9GUKT-xh_/timg?image&quality=100&size=b4000_4000&sec=1523972366&di=de038de21529f7222aa841128a42e1fe&src=http://dota2hq.eu/_ph/1/371177432.jpg'}}"
+                             alt="" width="640" height="480"  ></a></li>
+                     @endforeach
                 </ul>
                 <a href="javascript:void(0);" class="unslider-arrow04 prev"><img class="arrow" id="al" src="https://lccdn.phphub.org/uploads/avatars/21030_1515634349.jpg?imageView2/1/w/100/h/100" alt="prev" width="20" height="35"></a>
                 <a href="javascript:void(0);" class="unslider-arrow04 next"><img class="arrow" id="ar" src="https://lccdn.phphub.org/uploads/avatars/21030_1515634349.jpg?imageView2/1/w/100/h/100" alt="next" width="20" height="37"></a>
