@@ -12,6 +12,8 @@ class IndexController extends Controller
     public function index(Request $request)
     {
 
+        $cate_id = null;
+
         $category = Category::all();
 
         $articles = Article::select('id')->get();
@@ -25,6 +27,12 @@ class IndexController extends Controller
                 ->with('comment')
                 ->with('user');
 
+            if($request->cate_id){
+                $articles =$articles->where('cate_id',$request->cate_id);
+                $cate_id = $request->cate_id;
+            }
+
+
             if ($request->filter) {
 
                 if ($request->filter == 'hits') {
@@ -33,7 +41,7 @@ class IndexController extends Controller
                 }
 
             } else {
-
+                $articles = $articles->OrderBy('created_at', 'desc');
             }
 
             $articles = $articles->paginate(5);
@@ -50,6 +58,7 @@ class IndexController extends Controller
         return view('index', [
             'category' => $category,
             'articles' => $articles,
+            'cate_id' => $cate_id,
             'articles_indexs' => $articles_indexs
         ]);
 

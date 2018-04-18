@@ -15,6 +15,8 @@ Route::get('test','LoginController@test');
 
 Route::get('/','IndexController@index');            //首页
 
+Route::get('/{cate_id}','IndexController@index');            //首页
+
 Route::get('login','LoginController@login');          //登陆
 
 Route::get('register','LoginController@register');         //注册

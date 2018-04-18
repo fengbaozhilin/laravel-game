@@ -60,9 +60,9 @@
 
                 <ul class="list-inline topic-filter">
                     <li class="popover-with-html" data-content="综合"><a
-                                href="{{url('/')}}" @if(isset($_GET['filter']))  @else class="active"   @endif>综合</a></li>
+                                href="{{url('/'.$cate_id)}}" @if(isset($_GET['filter']))  @else class="active"   @endif>综合</a></li>
                     <li class="popover-with-html" data-content="点击量"><a
-                                href="{{url('/?filter=hits')}}" @if(isset($_GET['filter']) && $_GET['filter']=='hits') class="active" @else @endif>点击量</a></li>
+                                href="{{url('/'.$cate_id.'?filter=hits')}}" @if(isset($_GET['filter']) && $_GET['filter']=='hits') class="active" @else @endif>点击量</a></li>
                     <li class="popover-with-html" data-content="待续"><a
                                 href="">待续</a></li>
 

@@ -14,7 +14,12 @@
     <script src="{{asset('js/message.js')}}"></script>
     <script src="{{asset('js/unslider.min.js')}}"></script>
 </head>
+<style>
+   a.active{
+        border-bottom: 2px solid #dc817e;
+    }
 
+</style>
 <body>
 <div role="navigation" class="navbar navbar-default topnav">
     <div class="container">
@@ -34,8 +39,9 @@
 
         <div id="top-navbar-collapse" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
+                <li class="" ><a @if($cate_id == null) class="active" @else @endif href="{{url('/')}}" >首页</a></li>
                 @foreach($category as $value)
-                    <li class=""><a href="https://laravel-china.org/topics">{{$value->name}}</a></li>
+                    <li class="" ><a @if($cate_id == $value->id) class="active" @else @endif href="{{url('/'.$value->id)}}" >{{$value->name}}</a></li>
                 @endforeach
 
 
