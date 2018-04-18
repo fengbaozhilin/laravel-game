@@ -30,3 +30,5 @@ Route::get('captcha_code','CaptchaController@captcha_code');   //验证码
 Route::post('mail/send','MailController@send');   //邮件发送
 
 Route::get('articleDetail/{id}','ArticleController@articleDetail');   //文章详情
+
+Route::get('test1','TestController@index');   //文章详情

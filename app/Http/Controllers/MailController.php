@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Contracts\Hzj;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Input;
@@ -12,6 +13,7 @@ class MailController extends Controller
     //
     public function send(Request $request)
     {
+
         date_default_timezone_set("PRC");
 
         //时间判断

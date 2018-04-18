@@ -32,10 +32,6 @@ class IndexController extends Controller
                     $articles = $articles->OrderBy('hits', 'desc');
                 }
 
-                if ($request->filter == 'created_at') {
-
-                    $articles = $articles->OrderBy('created_at', 'asc');
-                }
             } else {
 
             }
