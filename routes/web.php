@@ -15,7 +15,7 @@ Route::get('test','LoginController@test');
 
 Route::get('/','IndexController@index');            //首页
 
-Route::get('/{cate_id}','IndexController@index');            //首页
+Route::get('/cate/{cate_id}','IndexController@cate');            //分类
 
 Route::get('login','LoginController@login');          //登陆
 
@@ -33,4 +33,10 @@ Route::post('mail/send','MailController@send');   //邮件发送
 
 Route::get('articleDetail/{id}','ArticleController@articleDetail');   //文章详情
 
-Route::get('test1','TestController@index');   //文章详情
+Route::get('create_article','ArticleController@create_article');   //
+
+Route::get('upload_article','ArticleController@upload_article');   //
+
+
+Route::get('test1','TestController@index');
+

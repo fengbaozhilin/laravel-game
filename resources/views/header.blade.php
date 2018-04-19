@@ -9,10 +9,12 @@
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="https://dn-phphub.qbox.me//assets/css/1e2676fd224cc66e5027-styles.css">
+    {{--<link rel="stylesheet" href="{{asset('css/style.css')}}">--}}
     <link rel="stylesheet" href="{{asset('css/message.css')}}">
     <script src="{{asset('js/jquery-1.12.4.min.js')}}"></script>
     <script src="{{asset('js/message.js')}}"></script>
     <script src="{{asset('js/unslider.min.js')}}"></script>
+    <script src="{{asset('js/wangEditor.min.js')}}"></script>
 </head>
 <style>
    a.active{
@@ -39,9 +41,9 @@
 
         <div id="top-navbar-collapse" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li class="" ><a @if($cate_id == null) class="active" @else @endif href="{{url('/')}}" >首页</a></li>
+                <li class="" ><a @if(isset($cate) && $cate == null) class="active" @else @endif href="{{url('/')}}" >首页</a></li>
                 @foreach($category as $value)
-                    <li class="" ><a @if($cate_id == $value->id) class="active" @else @endif href="{{url('/'.$value->id)}}" >{{$value->name}}</a></li>
+                    <li class="" ><a @if(isset($cate) && $cate == $value->id) class="active" @else @endif href="{{url('/cate/'.$value->id)}}" >{{$value->name}}</a></li>
                 @endforeach
 
 

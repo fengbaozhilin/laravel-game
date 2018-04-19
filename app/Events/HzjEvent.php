@@ -34,6 +34,8 @@ class HzjEvent
     public function broadcastOn()
     {
 //        return new PrivateChannel('channel-name');
-        return [];
+        return [
+            "chat-room.1"
+        ];
     }
 }

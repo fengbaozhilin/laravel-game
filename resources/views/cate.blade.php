@@ -35,25 +35,7 @@
 <div class="container main-container ">
     <div class="col-md-9 topics-index main-col">
 
-        <div class="box text-center site-intro rm-link-color" style="box-shadow: 0 1px 0 0 #ddd, 0 0 0 1px #ddd;">
-            <div class="banner" id="b04" style="background-color: #eee">
-                <ul>
-                 @foreach($articles_indexs as $articles_index)
-                    <li>
-                        <a href="{{url('login')}}">
-                            <img src="{{$articles_index->thumb?$articles_index->thumb:'https://ss0.bdstatic.com/94oJfD_bAAcT8t7mm9GUKT-xh_/timg?image&quality=100&size=b4000_4000&sec=1523972366&di=de038de21529f7222aa841128a42e1fe&src=http://dota2hq.eu/_ph/1/371177432.jpg'}}" alt="" width="640" height="480">
-                        </a>
-                    </li>
-                     @endforeach
-                </ul>
-                <a href="javascript:void(0);" class="unslider-arrow04 prev">
 
-                    <img class="arrow" id="al" src="{{asset('images/image/1.jpg')}}" alt="prev" width="20" height="35">
-
-                </a>
-                <a href="javascript:void(0);" class="unslider-arrow04 next"><img class="arrow" id="ar" src="{{asset('images/image/2.jpg')}}" alt="next" width="20" height="37"></a>
-            </div>
-        </div>
 
 
         <div class="panel panel-default">
@@ -62,9 +44,9 @@
 
                 <ul class="list-inline topic-filter">
                     <li class="popover-with-html" data-content="综合"><a
-                                href="{{url('/')}}" @if(isset($_GET['filter']))  @else class="active"   @endif>综合</a></li>
+                                href="{{url('/cate/'.$cate)}}" @if(isset($_GET['filter']))  @else class="active"   @endif>综合</a></li>
                     <li class="popover-with-html" data-content="点击量"><a
-                                href="{{url('/?filter=hits')}}" @if(isset($_GET['filter']) && $_GET['filter']=='hits') class="active" @else @endif>点击量</a></li>
+                                href="{{url('/cate/'.$cate.'?filter=hits')}}" @if(isset($_GET['filter']) && $_GET['filter']=='hits') class="active" @else @endif>点击量</a></li>
                     <li class="popover-with-html" data-content="待续"><a
                                 href="">待续</a></li>
 
@@ -154,7 +136,7 @@
                 <div class="panel-footer text-right remove-padding-horizontal pager-footer">
                     <!-- Pager -->
 
-                        {{$articles->links()}}
+                    {{$articles->links()}}
 
                 </div>
             </div>
@@ -186,6 +168,41 @@
             </div>
         </div>
 
+        <div class="panel panel-default corner-radius sidebar-resources">
+            <div class="panel-heading text-center">
+                <h3 class="panel-title">实战课程</h3>
+            </div>
+            <div class="panel-body">
+
+                <div id="carousel-books" class="carousel slide" data-ride="carousel">
+                    <ol class="carousel-indicators"
+                        style="border-radius: 12px;background-color: hsla(0,0%,100%,.3);margin-bottom: 0px;padding: 4px 8px;">
+                        <li data-target="#carousel-books" data-slide-to="0" class="active "
+                            style="border: 1px solid #ff8580;background-color: #f4665f;"></li>
+
+                    </ol>
+
+                    <!-- Wrapper for slides -->
+                    <div class="carousel-inner" role="listbox">
+                        <div class="item active">
+                            <a href="https://laravel-china.org/topics/3383/laravel-the-first-chinese-new-book-laravel-tutorial"
+                               target=&quot;_blank&quot;>
+                                <img src="https://lccdn.phphub.org/uploads/banners/YpxKKNlSPdmwotO3u8An.jpg"
+                                     alt="《Laravel 入门教程 - 从零到部署上线》" title="《Laravel 入门教程 - 从零到部署上线》"/>
+                            </a>
+                        </div>
+                        <div class="item ">
+                            <a href="https://laravel-china.org/topics/6592" target=&quot;_blank&quot;>
+                                <img src="https://lccdn.phphub.org/uploads/banners/iNanVVOXdnYQ6jRfMdWE.png"
+                                     alt="《Laravel 进阶课程 - 从零构建论坛系统》" title="《Laravel 进阶课程 - 从零构建论坛系统》"/>
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
 
 
         <div class="panel panel-default corner-radius">
@@ -204,7 +221,6 @@
                 </ul>
             </div>
         </div>
-
 
 
 
@@ -229,7 +245,29 @@
         </div>
 
 
+        <div class="panel panel-default corner-radius">
+            <div class="panel-body text-center sidebar-sponsor-box">
 
+                <a class="sidebar-sponsor-link" href="http://yousails.mikecrm.com/4Dh5uWU" target="_blank">
+                    <img src="https://lccdn.phphub.org/uploads/banners/doy57aKXkF6VH3cd3pFk.png"
+                         class="popover-with-html" data-content="优帆远扬技术外包" width="100%">
+                </a>
+                <hr>
+            </div>
+        </div>
+
+        <div class="panel panel-default corner-radius">
+            <div class="panel-heading text-center">
+                <h3 class="panel-title">友情社区</h3>
+            </div>
+            <div class="panel-body text-center" style="padding-top: 5px;">
+                <a href="https://ruby-china.org" target="_blank" rel="nofollow" title="Ruby China"
+                   style="padding: 3px;line-height: 40px;">
+                    <img src="https://lccdn.phphub.org/assets/images/friends/ruby-china.png"
+                         style="width:150px; margin: 3px 0;">
+                </a>
+            </div>
+        </div>
 
 
         <div id="sticker">
