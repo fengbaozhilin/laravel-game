@@ -67,8 +67,6 @@
     </div>
 
 
-
-
 </div>
 <script type="text/javascript">
     var E = window.wangEditor
@@ -124,34 +122,9 @@
         'code',  // 插入代码
         'undo',  // 撤销
         'redo'  // 重复
+//        'video',  // 插入视频
     ]
 
-    //默认
-    /*[
-	    'head',  // 标题
-	    'bold',  // 粗体
-	    'fontSize',  // 字号
-	    'fontName',  // 字体
-	    'italic',  // 斜体
-	    'underline',  // 下划线
-	    'strikeThrough',  // 删除线
-	    'foreColor',  // 文字颜色
-	    'backColor',  // 背景颜色
-	    'link',  // 插入链接
-	    'list',  // 列表
-	    'justify',  // 对齐方式
-	    'quote',  // 引用
-	    'emoticon',  // 表情
-	    'image',  // 插入图片
-	    'table',  // 表格
-	    'video',  // 插入视频
-	    'code',  // 插入代码
-	    'undo',  // 撤销
-	    'redo'  // 重复
-	]
-	*/
-
-    //onchange
     editor.customConfig.onchange = function (html) {
         // html 即变化之后的内容
         //console.log(html)
@@ -166,6 +139,13 @@
 
     editor.create()
 
+</script>
+<script>
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
 </script>
 <script>
     function upload_article() {
@@ -188,7 +168,7 @@
             return false;
         } else {
 
-            $.get("/upload_article",{
+            $.post("/upload_article",{
                 cate_id: cate_id, title: title, content: content
             },function (res) {
                 if (res.code == 200) {
