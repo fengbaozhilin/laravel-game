@@ -129,10 +129,10 @@
                                         <span class="hidden-xs label label-warning">{{$article->category['name']}}</span>
 
                                         <a href="#"
-                                           title="{{$article->title}}">
+                                           title="{{$article->name}}">
 
 
-                                            {{$article->title}}
+                                            {{$article->name}}
 
 
                                         </a>

@@ -35,7 +35,7 @@ Route::get('articleDetail/{id}','ArticleController@articleDetail');   //文章�
 
 Route::get('create_article','ArticleController@create_article');   //
 
-Route::get('upload_article','ArticleController@upload_article');   //
+Route::post('upload_article','ArticleController@upload_article');   //
 
 
 Route::get('test1','TestController@index');

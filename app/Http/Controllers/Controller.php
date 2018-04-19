@@ -175,6 +175,14 @@ class Controller extends BaseController
 
     }
 
+    public function login_info(){
+        if(session()->has('user_id')){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
 
 
 }

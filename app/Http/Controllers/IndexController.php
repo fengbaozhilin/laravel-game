@@ -17,11 +17,11 @@ class IndexController extends Controller
 
         $articles = Article::select('id')->get();
 
-        $articles_indexs = Article::where('is_index', 1)->select('id', 'thumb', 'title')->get();
+        $articles_indexs = Article::where('is_index', 1)->select('id', 'thumb', 'name')->get();
 
         foreach ($articles as $k => $article) {
 
-            $articles = Article::find($article->id)->select('id', 'user_id', 'cate_id', 'title', 'hits', 'created_at')
+            $articles = Article::find($article->id)->select('id', 'user_id', 'cate_id', 'name', 'hits', 'created_at')
                 ->with('category')
                 ->with('comment')
                 ->with('user');
@@ -61,7 +61,7 @@ class IndexController extends Controller
 
         foreach ($articles as $k => $article) {
 
-            $articles = Article::find($article->id)->select('id', 'user_id', 'cate_id', 'title', 'hits', 'created_at')
+            $articles = Article::find($article->id)->select('id', 'user_id', 'cate_id', 'name', 'hits', 'created_at')
                 ->with('category')
                 ->with('comment')
                 ->with('user')

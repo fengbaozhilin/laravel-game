@@ -158,23 +158,25 @@
 
             $.showmessage({message: '请填写分类', type: 'error'})
             return false;
-        } else if (title == null) {
+        } else if (title == '') {
 
             $.showmessage({message: '请填写标题', type: 'error'})
             return false;
         }
-        else if (content == null) {
+        else if (content == '') {
             $.showmessage({message: '请填写内容', type: 'error'})
             return false;
         } else {
 
             $.post("/upload_article",{
-                cate_id: cate_id, title: title, content: content
+                cate_id: cate_id, title: title, a_content: content
             },function (res) {
                 if (res.code == 200) {
-                    alert(res.title);
-                } else {
                     window.location.reload();
+                } else if(res.code == 300){
+                    $.showmessage({message: '请先登陆', type: 'error'})
+                }else {
+                    $.showmessage({message: '发布文章失败，请重试', type: 'error'})
                 }
             },'json')
 
