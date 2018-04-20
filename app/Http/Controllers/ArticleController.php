@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Article;
 use App\Models\Category;
+use App\Models\Comment;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class ArticleController extends Controller
@@ -13,10 +15,16 @@ class ArticleController extends Controller
     public function articleDetail($id)
     {
 
-        $detail = Article::find($id);
+        $article = Article::find($id)->with('user')->with('comment')->first();
 
+        foreach ($article->comment as $k => $value){
+          $user =   User::find($value->user_id);
+          $article->comment[$k]['user'] = $user;
+        }
 
-        return view('articleDetail', ['detail' => $detail]);
+        $count_comment  = count($article->comment);
+
+        return view('articleDetail', ['article' => $article,'count_comment' => $count_comment]);
 
     }
 
@@ -31,6 +39,7 @@ class ArticleController extends Controller
         ]);
     }
 
+    //上传文章
     public function upload_article(Request $request)
     {
 
@@ -53,6 +62,30 @@ class ArticleController extends Controller
         } else {
             return $this->error('300', '未登录');
         }
+    }
+
+    public function article_reply(Request $request){
+
+        if($this->login_info()){
+            try {
+
+                Comment::create(['article_id'=>$request->article_id,'content'=>$request->contents,'user_id'=>$this->getUser()->id]);
+
+            } catch (\Exception $e) {
+
+                $this->msg_status(200);
+
+                return redirect()->back();
+            }
+            $this->msg_status();
+            return redirect()->back();
+        }else{
+            $this->msg_status(200);
+            return redirect('login');
+        }
+
+
+
     }
 
 }

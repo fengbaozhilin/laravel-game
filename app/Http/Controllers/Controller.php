@@ -175,6 +175,7 @@ class Controller extends BaseController
 
     }
 
+    //判断登陆状态
     public function login_info(){
         if(session()->has('user_id')){
             return true;

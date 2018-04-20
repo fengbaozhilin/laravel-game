@@ -11,8 +11,6 @@ class IndexController extends Controller
     //
     public function index(Request $request)
     {
-
-
         $category = Category::all();
 
         $articles = Article::select('id')->get();

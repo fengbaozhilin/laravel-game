@@ -20,7 +20,9 @@
    a.active{
         border-bottom: 2px solid #dc817e;
     }
-
+   .main-container {
+       padding-bottom: 0!important;
+   }
 </style>
 <body>
 <div role="navigation" class="navbar navbar-default topnav">
@@ -41,9 +43,9 @@
 
         <div id="top-navbar-collapse" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li class="" ><a @if(isset($cate) && $cate == null) class="active" @else @endif href="{{url('/')}}" >首页</a></li>
+                <li class="" ><a @if(!isset($cate)) class="active"  @endif href="{{url('/')}}" >首页</a></li>
                 @foreach($category as $value)
-                    <li class="" ><a @if(isset($cate) && $cate == $value->id) class="active" @else @endif href="{{url('/cate/'.$value->id)}}" >{{$value->name}}</a></li>
+                    <li class="" ><a @if(isset($cate) && $cate == $value->id) class="active"  @endif href="{{url('/cate/'.$value->id)}}" >{{$value->name}}</a></li>
                 @endforeach
 
 
@@ -63,8 +65,8 @@
                 @if(session('login_info') == 'success')
                     <ul class="nav navbar-nav github-login" style="margin-top: 12px">
                         <a href="#" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="dLabel">
-                            <img class="avatar-topnav" alt="hzjdhr" src="https://lccdn.phphub.org/uploads/avatars/21030_1515634349.jpg?imageView2/1/w/100/h/100">
-                            {{session('username')}}
+                            <img class="avatar-topnav" alt="hzjdhr" src="{{asset($user_info->avatar)}}">
+                          {{$user_info->nickname}}
                             <span class="caret"></span>
                         </a>
                     </ul>

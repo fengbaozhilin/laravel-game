@@ -7,7 +7,7 @@
     }
 </style>
 
-<div class="footer" style="position:relative;  margin-top: 20px;height: 50px;line-height: 5px;overflow: hidden;">
+<div class="footer" style="position:relative;  margin-top: 250px;height: 50px;line-height: 5px;overflow: hidden;">
     welcome
 </div>
 

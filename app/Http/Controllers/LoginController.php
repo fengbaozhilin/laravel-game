@@ -41,9 +41,11 @@ class LoginController extends Controller
 
                 $avatar = $user_info->avatar;
 
-                session(['login_info' => 'success', 'user_id'=>$user_info->id,'username' => $request->username, 'avatar' => $avatar]);
+                session(['login_info' => 'success', 'user_id'=>$user_info->id]);
 
-               return redirect('/');
+                setcookie('user_id',$user_info->id,time()+24 * 60 *60);
+
+                return redirect('/');
             } else {
 
                 return '<script>alert("账号或密码错误");window.history.go(-1);</script>';
@@ -90,8 +92,9 @@ class LoginController extends Controller
 
             $this->msg_status(); //登陆状态
 
-            session(['login_info' => 'success','user_id'=>$user->id, 'username' => $user->username, 'avatar' =>$user->avatar]);
+            session(['login_info' => 'success','user_id'=>$user->id]);
             //验证通过,保存success
+            setcookie('user_id',$user->id,time()+24 * 60 *60);
             return $this->success();
         } else {
             return $this->error('120');

@@ -37,6 +37,9 @@ Route::get('create_article','ArticleController@create_article');   //
 
 Route::post('upload_article','ArticleController@upload_article');   //
 
+Route::post('article_reply','ArticleController@article_reply');   //文章回复
+
+Route::get('user/{id}','UserController@index');  //用户信息
 
 Route::get('test1','TestController@index');
 
