@@ -43,5 +43,8 @@ Route::get('user/{id}','UserController@index');  //用户信息
 
 Route::get('user/{id}/edit','UserController@edit');  //用户信息
 
+Route::post('editInfo','UserController@editInfo');  //用户信息
+
+
 Route::get('test1','TestController@index');
 

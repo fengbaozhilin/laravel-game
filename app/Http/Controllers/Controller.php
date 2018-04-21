@@ -184,6 +184,15 @@ class Controller extends BaseController
         }
     }
 
+    public function check_login(){
+        if(!$this->login_info()){
+
+            return redirect('login');
+        }else{
+
+        }
+    }
+
 
 
 

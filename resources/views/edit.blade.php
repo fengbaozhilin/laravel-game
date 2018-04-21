@@ -17,10 +17,6 @@
                             <i class="text-md fa fa-picture-o" aria-hidden="true"></i>
                             &nbsp;修改头像
                         </a>
-                        <a href="https://laravel-china.org/users/21030/edit_email_notify" class="list-group-item ">
-                            <i class="text-md fa fa-bell" aria-hidden="true"></i>
-                            &nbsp;消息通知
-                        </a>
 
                         <a href="https://laravel-china.org/users/21030/edit_password" class="list-group-item ">
                             <i class="text-md fa fa-lock" aria-hidden="true"></i>
@@ -45,7 +41,7 @@
                     <form class="form-horizontal" method="POST" action="{{url('/editInfo')}}" accept-charset="UTF-8">
                         <input type="hidden" name="_token" value="{{csrf_token()}}">
 
-
+                        <input type="hidden" name="user_id" value="{{$user->id}}">
 
 
                         <div class="form-group">
@@ -61,7 +57,7 @@
                         <div class="form-group">
                             <label for="" class="col-sm-2 control-label">昵称</label>
                             <div class="col-sm-6">
-                                <input class="form-control" name="real_name" type="text" value="{{$user->nickname}}">
+                                <input class="form-control" name="nickname" type="text" value="{{$user->nickname}}">
                             </div>
                             <div class="col-sm-4 help-block">
                                 如：李小明

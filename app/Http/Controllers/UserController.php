@@ -56,24 +56,50 @@ class UserController extends Controller
         //编辑页面
         public function edit($id){
 
-        $user = User::find($id);
+            if(session('user_id') == $id){
+
+                $user = User::find($id);
+
+                return view('edit',['user'=>$user]);
+
+            }else{
+                $this->msg_status(200);
+
+                return redirect('/');
+            }
 
 
 
 
 
 
-        return view('edit',['user'=>$user]);
+
 
 
         }
 
         //编辑
-        public function  editInfo($id,Request $request){
+        public function  editInfo(Request $request,User $user){
 
-            $user = User::find($id);
+            $this->check_login();
 
-            $user->update(['nickname'=>$request->nickname]);
+            if(session('user_id') == $request->user_id){
+
+                $user = $user->find($request->user_id);
+
+                $user->update(['nickname'=>$request->nickname]);
+
+                $this->msg_status();
+
+                return redirect()->back();
+
+            }else{
+                $this->msg_status(200);
+
+                return redirect()->back();
+            }
+
+
 
 
 
