@@ -125,7 +125,7 @@
                                 @foreach($articles as $article)
                                     <li class="list-group-item">
 
-                                        <a href="https://laravel-china.org/articles/8168/my-2018-the-key-word-accumulation"
+                                        <a href="{{url('/articleDetail/'.$article->id)}}"
                                            title="{{$article->name}}" class="rm-link-color">
                                             {{$article->name}}
                                         </a>

@@ -62,11 +62,14 @@
 
                 <ul class="list-inline topic-filter">
                     <li class="popover-with-html" data-content="综合"><a
-                                href="{{url('/')}}" @if(isset($_GET['filter']))  @else class="active"   @endif>综合</a></li>
+                                href="{{url('/')}}" @if(isset($_GET['filter']))  @else class="active"   @endif>综合</a>
+                    </li>
                     <li class="popover-with-html" data-content="点击量"><a
-                                href="{{url('/?filter=hits')}}" @if(isset($_GET['filter']) && $_GET['filter']=='hits') class="active" @else @endif>点击量</a></li>
+                                href="{{url('/?filter=hits')}}" @if(isset($_GET['filter']) && $_GET['filter']=='hits') class="active" @else @endif>点击量</a>
+                    </li>
                     <li class="popover-with-html" data-content="待续"><a
-                                href="">待续</a></li>
+                                href="">待续</a>
+                    </li>
 
 
                 </ul>
@@ -84,7 +87,7 @@
                             <li class="list-group-item ">
 
                                 <a class="reply_count_area hidden-xs pull-right"
-                                   href="https://laravel-china.org/topics/7657/laravel-tutorial-series-third-the-first-edition-of-the-laravel-tutorial-advanced-architecture-api-server">
+                                   href="{{url('/articleDetail/'.$article->id)}}">
                                     <div class="count_set">
 
 
@@ -115,7 +118,7 @@
 
                                 <div class="avatar pull-left">
 
-                                    <a href="https://laravel-china.org/users/1" title="{{$article->user['nickname']}}">
+                                    <a href="{{'/user/'.$article->user_id}}" title="{{$article->user['nickname']}}">
                                         <img class="media-object img-thumbnail avatar avatar-middle"
                                              alt="" src="{{asset($article->user['avatar'])}}"/>
                                     </a>
@@ -128,7 +131,7 @@
 
                                         <span class="hidden-xs label label-warning">{{$article->category['name']}}</span>
 
-                                        <a href="#"
+                                        <a href="{{url('/articleDetail/'.$article->id)}}"
                                            title="{{$article->name}}">
 
 

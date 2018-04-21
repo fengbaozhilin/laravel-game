@@ -22,7 +22,7 @@ class AppServiceProvider extends ServiceProvider
             $view->with('category',$category);
         });
 
-       if($_COOKIE['user_id']){
+       if(isset($_COOKIE['user_id'])){
 
            $user_info = User::find($_COOKIE['user_id']);
        }else{

@@ -53,6 +53,32 @@ class UserController extends Controller
 
         }
 
+        //编辑页面
+        public function edit($id){
+
+        $user = User::find($id);
+
+
+
+
+
+
+        return view('edit',['user'=>$user]);
+
+
+        }
+
+        //编辑
+        public function  editInfo($id,Request $request){
+
+            $user = User::find($id);
+
+            $user->update(['nickname'=>$request->nickname]);
+
+
+
+        }
+
 
 
 

@@ -15,6 +15,8 @@ class ArticleController extends Controller
     public function articleDetail($id)
     {
 
+        $this->hit($id);
+
         $article = Article::find($id)->with('user')->with('comment')->first();
 
         foreach ($article->comment as $k => $value){
@@ -28,7 +30,7 @@ class ArticleController extends Controller
 
     }
 
-
+//上传文章页面
     public function create_article()
     {
         $categorys = Category::all();
@@ -86,6 +88,21 @@ class ArticleController extends Controller
 
 
 
+    }
+
+
+    public function hit($id){
+
+        if(isset($_SERVER['REMOTE_ADDR'])){
+
+         $article =  Article::find($id);
+
+         $article->hits =$article->hits+1;
+
+         $article->save();
+
+         return true;
+        }
     }
 
 }

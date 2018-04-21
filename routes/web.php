@@ -33,13 +33,15 @@ Route::post('mail/send','MailController@send');   //邮件发送
 
 Route::get('articleDetail/{id}','ArticleController@articleDetail');   //文章详情
 
-Route::get('create_article','ArticleController@create_article');   //
+Route::get('create_article','ArticleController@create_article');   ////上传文章页面
 
-Route::post('upload_article','ArticleController@upload_article');   //
+Route::post('upload_article','ArticleController@upload_article');   //上传文章
 
 Route::post('article_reply','ArticleController@article_reply');   //文章回复
 
 Route::get('user/{id}','UserController@index');  //用户信息
+
+Route::get('user/{id}/edit','UserController@edit');  //用户信息
 
 Route::get('test1','TestController@index');
 
