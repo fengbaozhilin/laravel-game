@@ -41,11 +41,16 @@ Route::post('article_reply','ArticleController@article_reply');   //文章回复
 
 Route::get('user/{id}','UserController@index');  //用户信息
 
-Route::get('user/{id}/edit','UserController@edit');  //用户信息
+Route::get('user/{id}/edit','UserController@edit');  //编辑页面
 
-Route::post('editInfo','UserController@editInfo');  //用户信息
+Route::post('editInfo','UserController@editInfo');  //编辑
 
-Route::get('friend/{id}','UserController@friend');  //用户信息
+Route::get('friend/{id}','UserController@friend');  //关注
+
+Route::post('upload_avatar','UserController@upload_avatar');  //关注
+
+Route::post('edit_password','UserController@edit_password');  //关注
+
 
 Route::get('test1','TestController@index');
 

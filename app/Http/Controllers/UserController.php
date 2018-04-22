@@ -137,4 +137,89 @@ class UserController extends Controller
     }
 
 
+    public function upload_avatar(Request $request){
+
+        if($this->login_info()) {
+
+            if ($request->user_id == session('user_id')) {
+
+                $file = $request->file('avatar');
+
+                $allowed_extensions = ["png", "jpg", "gif"];
+
+                if ($file->getClientOriginalExtension() && !in_array($file->getClientOriginalExtension(), $allowed_extensions)) {
+                    return ['error' => 'You may only upload png, jpg or gif.'];
+                }
+
+                $destinationPath = 'images/image/'; //public 文件夹下面建文件夹
+
+                $extension = $file->getClientOriginalExtension();
+
+                $fileName = str_random(10) . '.' . $extension;
+
+                $file->move($destinationPath, $fileName);
+
+                $filePath = asset($destinationPath . $fileName);
+
+                $user = User::find(session('user_id'));
+
+                try{
+
+                    $user->update(['avatar'=>$filePath]);
+
+
+                }catch (\Exception $e){
+
+                    $this->msg_status(200);
+                    return redirect()->back();
+                }
+
+                $this->msg_status();
+
+                return redirect()->back();
+
+        }
+
+        }else{
+            return redirect('login');
+        }
+
+
+
+    }
+
+    public  function  edit_password(Request $request){
+        if($this->login_info()) {
+
+            if ($request->user_id == session('user_id')) {
+
+                $user = User::find(session('user_id'));
+
+                try{
+
+                    $user->update(['password'=>$request->password]);
+
+                }catch (\Exception $e){
+
+                    $this->msg_status(200);
+
+                    return redirect()->back();
+                }
+
+                $this->msg_status();
+
+                return redirect()->back();
+
+            }
+
+        }else{
+
+            return redirect('login');
+
+        }
+
+
+    }
+
+
 }

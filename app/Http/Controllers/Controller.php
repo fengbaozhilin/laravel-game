@@ -81,7 +81,7 @@ class Controller extends BaseController
             $image = $image[1];
 
         }
-        $path = "uploads/sign/" . date('YmdHis', time());
+        $path = "images/image/" . date('YmdHis', time());
         //创建文件夹
         if (!file_exists($path)) {
             mkdir($path, 0700, true);
