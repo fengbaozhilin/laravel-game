@@ -17,16 +17,27 @@ class ArticleController extends Controller
 
         $this->hit($id);
 
-        $article = Article::find($id)->with('user')->with('comment')->first();
+        $article = Article::where('id',$id);
 
-        foreach ($article->comment as $k => $value){
-          $user =   User::find($value->user_id);
-          $article->comment[$k]['user'] = $user;
+        if($article){
+
+            $article = $article->with('user')->with('comment')->first();
+
+            foreach ($article->comment as $k => $value){
+
+                $user =   User::find($value->user_id);
+
+                $article->comment[$k]['user'] = $user;
+            }
+
+            $count_comment  = count($article->comment);
+
+        return view('articleDetail',['article'=>$article,'count_comment'=>$count_comment]);
+        }else{
+            var_dump(1);
         }
 
-        $count_comment  = count($article->comment);
 
-        return view('articleDetail', ['article' => $article,'count_comment' => $count_comment]);
 
     }
 
@@ -80,6 +91,7 @@ class ArticleController extends Controller
                 return redirect()->back();
             }
             $this->msg_status();
+
             return redirect()->back();
         }else{
             $this->msg_status(200);
@@ -91,17 +103,20 @@ class ArticleController extends Controller
     }
 
 
+    //增加点击量
     public function hit($id){
 
         if(isset($_SERVER['REMOTE_ADDR'])){
 
-         $article =  Article::find($id);
+         if( $article =  Article::find($id)){
 
-         $article->hits =$article->hits+1;
+             $article->hits =$article->hits+1;
 
-         $article->save();
+             $article->save();
 
-         return true;
+             return true;
+         }
+
         }
     }
 

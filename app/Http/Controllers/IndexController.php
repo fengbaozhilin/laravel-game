@@ -40,10 +40,13 @@ class IndexController extends Controller
 
         }
 
+        $rand_articles = Article::take(5)->orderBy('hits','desc')->get();
+
         return view('index', [
             'category' => $category,
             'articles' => $articles,
-            'articles_indexs' => $articles_indexs
+            'articles_indexs' => $articles_indexs,
+            'rand_articles'=>$rand_articles
         ]);
 
     }
@@ -81,10 +84,13 @@ class IndexController extends Controller
 
         }
 
+        $rand_articles = Article::take(5)->orderBy('hits','desc')->get();
+
         return view('cate', [
             'category' => $category,
             'articles' => $articles,
             'cate' => $cate_id,
+            'rand_articles'=>$rand_articles
         ]);
 
 

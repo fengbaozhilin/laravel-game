@@ -64,8 +64,8 @@
 
                 @if(session('login_info') == 'success')
                     <ul class="nav navbar-nav github-login" style="margin-top: 12px">
-                        <a href="#" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="dLabel">
-                            <img class="avatar-topnav" alt="hzjdhr" src="{{asset($user_info->avatar)}}">
+                        <a href="@if($user_info !== null){{url('/user/'.$user_info->id)}} @else {{url('/login')}}  @endif" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="dLabel">
+                            <img class="avatar-topnav" alt="" src="{{asset($user_info->avatar)}}">
                           {{$user_info->nickname}}
                             <span class="caret"></span>
                         </a>

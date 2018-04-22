@@ -167,7 +167,7 @@
                         </div>
 
                         <div class="panel-body text-center topic-author-box">
-                            <a href="https://laravel-china.org/users/19819">
+                            <a href="{{url('/user/'.$article->user_id)}}">
                                 <img src="{{asset($article->user['avatar'])}}" style="width:80px; height:80px;margin:5px;" class="img-thumbnail avatar">
                             </a>
 
@@ -191,7 +191,7 @@
                                     <i class="fa fa-paint-brush text-md"></i>Ta的文章
                                 </a>
 
-                                <a data-method="post" class="btn btn-primary btn-block" href="javascript:void(0);" data-url="https://laravel-china.org/users/follow/19819" id="user-edit-button" style="cursor:pointer;">
+                                <a  href="{{url('friend/'.$article->user['id'])}}" class="btn btn-primary btn-block"  id="user-edit-button" style="cursor:pointer;">
                                    <i class="fa fa-plus"></i> 关注 Ta
 
 </a>

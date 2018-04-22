@@ -169,92 +169,10 @@
 
     </div>
 
-    <div class="col-md-3 side-bar">
 
 @include('right_top')
 
 
-
-        <div class="panel panel-default corner-radius">
-            <div class="panel-heading text-center">
-                <h3 class="panel-title">推荐职位</h3>
-            </div>
-
-            <div class="panel-body text-center promote_jobs-box">
-                <ul class="list">
-                    <li>
-                        <a href="https://laravel-china.org/topics/9068/winmark-php-engineer-recruitment"
-                           title="威锋网招聘 PHP 工程师">
-                            [深圳][6-14K] 威锋网招聘 PHP 工程师
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-
-
-
-
-        <div class="panel panel-default corner-radius panel-hot-topics">
-            <div class="panel-heading text-center">
-                <h3 class="panel-title">七天内最热</h3>
-            </div>
-            <div class="panel-body">
-                <ul class="list">
-                    <li>
-                        <a href="https://laravel-china.org/topics/9183/after-two-times-study-the-campus-second-hand-book-trading-platform-based-on-the-tutorials"
-                           title="【大刀阔斧的改造】在学习了两遍之后，基于教程开发的校园二手书交易平台：）">
-
-                            🏆
-
-                            【大刀阔斧的改造】在学习了两遍之后，基于教程开发的校园二手书交易平台：）
-                        </a>
-                    </li>
-
-                </ul>
-            </div>
-        </div>
-
-
-
-
-
-        <div id="sticker">
-
-            <div class="panel panel-default corner-radius sidebar-resources">
-                <div class="panel-heading text-center">
-                    <h3 class="panel-title">推荐资源</h3>
-                </div>
-                <div class="panel-body">
-                    <ul class="list list-group ">
-
-
-                        <li class="list-group-item ">
-                            <a href="https://laravel-china.org/categories/1" class="no-pjax" target=&quot;_blank&quot;
-                               title="Laravel / PHP 工作">
-                                <img class="media-object inline-block "
-                                     src="https://lccdn.phphub.org/uploads/banners/vCE4hPLqVg9bBYnPYkZJ.png">
-                                Laravel / PHP 工作
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-
-
-            <div class="panel panel-default corner-radius" style="color:#a5a5a5">
-                <div class="panel-body text-center">
-                    <a href="mailto:summer@yousails.com" style="color:#a5a5a5">
-          <span style="margin-top: 7px;display: inline-block;">
-              <i class="fa fa-heart" aria-hidden="true" style="color: rgba(232, 146, 136, 0.89);"></i> 建议反馈？请私信 Summer
-          </span>
-                    </a>
-                </div>
-            </div>
-
-        </div>
-    </div>
-    <div class="clearfix"></div>
 
 
 </div>

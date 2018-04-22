@@ -69,12 +69,12 @@
 
                     <hr>
 @if($state == 1)
-                    <a class="btn btn-primary btn-block" href="https://laravel-china.org/users/21030/edit"
+                    <a class="btn btn-primary btn-block" href="{{url('user/'.$id.'/edit')}}"
                        id="user-edit-button">
                         <i class="fa fa-edit"></i> 编辑个人资料
                     </a>
     @else
-                        <a class="btn btn-primary btn-block" href="https://laravel-china.org/users/21030/edit"
+                        <a class="btn btn-primary btn-block" href="{{url('/friend/'.$id)}}"
                            id="user-edit-button">
                             <i class="fa fa-edit"></i> 关注用户
                         </a>
