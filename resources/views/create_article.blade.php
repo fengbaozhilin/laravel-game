@@ -82,7 +82,7 @@
     editor.customConfig.uploadImgMaxSize = 5 * 1024 * 1024
 
     // 限制一次最多上传 5 张图片
-    editor.customConfig.uploadImgMaxLength = 5
+    editor.customConfig.uploadImgMaxLength = 10
 
     editor.customConfig.uploadImgParamsWithUrl = true
 
@@ -172,6 +172,7 @@
                 cate_id: cate_id, title: title, a_content: content
             },function (res) {
                 if (res.code == 200) {
+                    alert("发表文章成功");
                     window.location.reload();
                 } else if(res.code == 300){
                     $.showmessage({message: '请先登陆', type: 'error'})

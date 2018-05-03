@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>websocket</title>
+</head>
+
+<body>
+<div id="msg">
+
+</div>
+
+<textarea id="data"></textarea>
+
+<div>
+
+    <button id='send'> 发送</button>
+</div>
+</body>
+<script>
+
+    age = prompt("请输入你的名字:","高翔"+123);
+
+    var socket = new WebSocket('ws://127.0.0.1:5656');
+    socket.onopen = function(event) {
+        alert('连接成功');
+    };
+
+    socket.onmessage = function(event) {
+        var content = event.data;
+
+            var divA = document.getElementById("msg");
+            divA.innerHTML=divA.innerHTML + age+':  '+content +'<br>';
+
+    };
+    var send = document.getElementById('send');
+    send.addEventListener('click', function() {
+
+        var content = document.getElementById("data").value;
+
+        socket.send(content);
+
+
+    });
+</script>
+
+</html>

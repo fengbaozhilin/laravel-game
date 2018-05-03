@@ -51,6 +51,9 @@ Route::post('upload_avatar','UserController@upload_avatar');  //关注
 
 Route::post('edit_password','UserController@edit_password');  //关注
 
+Route::get('friend/{id}','UserController@friend');  //关注
+
+Route::get('chat','ChatController@chat');  //关注
 
 Route::get('test1','TestController@index');
 

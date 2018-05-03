@@ -7,7 +7,12 @@
     }
 </style>
 
-<div class="footer" style="position:relative;  margin-top: 550px;height: 50px;line-height: 5px;overflow: hidden;">
+<div class="footer" style=" width: 100%;
+    height:50px;   /* footer的高度一定要是固定值*/
+    position:absolute;
+    bottom:0px;
+    left:0px;
+    ">
     welcome
 </div>
 
