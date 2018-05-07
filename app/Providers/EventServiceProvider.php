@@ -19,6 +19,10 @@ class EventServiceProvider extends ServiceProvider
         'App\Events\HzjEvent' => [
             'App\Listeners\HzjEventListener',
         ],
+
+        'SocialiteProviders\Manager\SocialiteWasCalled' => [
+            'SocialiteProviders\QQ\QqExtendSocialite@handle',
+        ],
     ];
 
     /**

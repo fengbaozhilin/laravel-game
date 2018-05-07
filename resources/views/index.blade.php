@@ -109,7 +109,7 @@
 
                                         <span class="count_of_visits" title="查看数">
 
-                                        {{$article->created_at->format('Y-m-d H:i')}}
+                                            {{date('Y-m-d H:i',strtotime($article->created_at))}}
                                  </span>
 
 

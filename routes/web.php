@@ -59,3 +59,6 @@ Route::get('chat','ChatController@chat');  //关注
 
 Route::get('test1','TestController@index');
 
+Route::get('login/qq', 'LoginController@redirectToProvider');
+
+Route::get('qqlogin', 'LoginController@handleProviderCallback');

@@ -14,7 +14,7 @@
 
 <div id="convo" data-from="Sonu Joshi">
     <ul class="chat-thread" id="msg">
-        <img class="avatar-topnav" alt="" src="{{asset('images/3.png')}}"> <li>欢迎大家来到此聊天室,大家一起来聊骚吧</li>
+        <img class="avatar-topnav" alt="" src="{{asset('images/3.png')}}"> <li>欢迎大家来到此聊天室,大家一起来聊天吧</li>
 
     </ul>
     <div style="margin-left: 30%"><textarea id="data" style="width: 600px;margin-top: 35px"></textarea>
@@ -35,7 +35,7 @@
 
     name = '{{$user->nickname}}';
 
-    var socket = new WebSocket('ws://127.0.0.1:5656');
+    var socket = new WebSocket('ws://118.24.121.95:5656');
     socket.onopen = function(event) {
 //        alert('连接成功');
     };
@@ -45,7 +45,7 @@
 
         var divA = document.getElementById("msg");
         divA.innerHTML=divA.innerHTML+content ;
-
+        boxScroll(divA);
     };
     var send = document.getElementById('send');
     send.addEventListener('click', function() {
@@ -57,6 +57,9 @@
 
 
     });
+    function boxScroll(o){
+        o.scrollTop = o.scrollHeight;
+    }
 </script>
 <script>
     function KeyDown()

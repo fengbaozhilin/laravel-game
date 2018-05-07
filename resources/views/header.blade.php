@@ -44,10 +44,11 @@
         <div id="top-navbar-collapse" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
                 <li class="" ><a @if(!isset($cate)) class="active"  @endif href="{{url('/')}}" >首页</a></li>
+                <li class="" ><a  href="{{url('/chat')}}" >聊天室</a></li>
                 @foreach($category as $value)
                     <li class="" ><a @if(isset($cate) && $cate == $value->id) class="active"  @endif href="{{url('/cate/'.$value->id)}}" >{{$value->name}}</a></li>
                 @endforeach
-                <li class="" ><a  href="{{url('/chat')}}" >聊天室</a></li>
+
 
 
 
@@ -66,9 +67,11 @@
                 @if(session('login_info') == 'success')
                     <ul class="nav navbar-nav github-login" style="margin-top: 12px">
                         <a href="@if($user_info !== null){{url('/user/'.$user_info->id)}} @else {{url('/login')}}  @endif" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="dLabel">
+                            @if($user_info !== null)
                             <img class="avatar-topnav" alt="" src="{{asset($user_info->avatar)}}">
                           {{$user_info->nickname}}
                             <span class="caret"></span>
+                                @endif
                         </a>
                     </ul>
                     @else

@@ -34,5 +34,10 @@ return [
         'key' => env('STRIPE_KEY'),
         'secret' => env('STRIPE_SECRET'),
     ],
+    'qq' => [
+        'client_id' => '101430073',         // Your GitHub Client ID
+        'client_secret' => '05e621f3589ea5d6cb761210c08677fb', // Your GitHub Client Secret
+        'redirect' => 'http://www.hzj233.cn/qqlogin',
+    ],
 
 ];

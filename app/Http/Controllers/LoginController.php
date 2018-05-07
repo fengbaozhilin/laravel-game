@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Validator;
+use Laravel\Socialite\Facades\Socialite;
 
 
 class LoginController extends Controller
@@ -113,5 +114,54 @@ class LoginController extends Controller
 
 // 1519697885
 // 1519697880
+
+    public function redirectToProvider()
+    {
+        return Socialite::with('qq')->redirect();
+    }
+
+    /**
+     * 从Github获取用户信息.
+     *
+     * @return Response
+     */
+    public function handleProviderCallback()
+    {
+        $user = Socialite::driver('qq')->user();
+
+        $user_info =  User::where('open_id',$user->id)->first();
+
+        if($user_info)
+        {
+            $this->msg_status(); //登陆状态
+
+            session(['login_info' => 'success', 'user_id'=>$user_info->id]);
+
+            setcookie('user_id',$user_info->id,time()+24 * 60 *60);
+
+            return redirect('/');
+        }else{
+
+            $user_info =  User::create([
+                'username' => $user->id,
+                'nickname' => $user->user['nickname'],
+                'password' => $user->id,
+                'avatar' =>$user->avatar,
+                'open_id' =>$user->id,
+            ]);
+
+            $this->msg_status(); //登陆状态
+
+            session(['login_info' => 'success','user_id'=>$user_info->id]);
+            //验证通过,保存success
+            setcookie('user_id',$user_info->id,time()+24 * 60 *60);
+
+            return redirect('/');
+
+        }
+
+
+
+    }
 
 }

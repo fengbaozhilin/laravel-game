@@ -39,9 +39,9 @@
                         你也可以使用第三方登录
                     </div>
 
-                    <a class="btn btn-lg btn-default btn-block" id="login-required-submit" href="https://laravel-china.org/auth/oauth?driver=github"><i
-                                class="fa fa-github-alt"></i> GitHub 登录</a>
-                    <a class="btn btn-lg btn-default btn-block" href="https://laravel-china.org/auth/oauth?driver=wechat"><i class="fa fa-weixin"></i> 使用微信登录</a>
+                    <a class="btn btn-lg btn-default btn-block" id="login-required-submit" href="{{url('/login/qq')}}"><i
+                                class="fa fa-github-alt"></i>QQ 登录</a>
+
                 </fieldset>
             </form>
 

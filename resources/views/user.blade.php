@@ -33,7 +33,7 @@
                                     第 {{$user->id}} 位会员
                                 </div>
                                 <div class="item number">
-                                    注册于 : <span class="timeago">{{$user->created_at->format('Y/m/d')}}</span>
+                                    注册于 : <span class="timeago">{{date('Y/m/d',strtotime($user->created_at))}}</span>
                                 </div>
 
 
@@ -132,7 +132,7 @@
                                         <span class="meta pull-right">
             <span> ⋅ </span>{{count($article['comment'])}} 回复
             <span> ⋅ </span>{{$article->hits}} 查看
-            <span> ⋅ </span><span class="timeago">{{$article->created_at->format('Y-m-d H:i')}}</span>
+            <span> ⋅ </span><span class="timeago"> {{date('Y-m-d H:i',strtotime($article->created_at))}}</span>
           </span>
                                     </li>
                                 @endforeach
