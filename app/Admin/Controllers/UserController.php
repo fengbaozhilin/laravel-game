@@ -74,7 +74,8 @@ class UserController extends Controller
         return Admin::grid(User::class, function (Grid $grid) {
 
             $grid->id('ID')->sortable();
-            $grid->username('用户名称');
+            $grid->username('账号');
+            $grid->nickname('用户昵称');
             $grid->avatar('头像')->image();
             $grid->created_at('创建时间');
         });
@@ -89,7 +90,8 @@ class UserController extends Controller
     {
         return Admin::form(User::class, function (Form $form) {
 
-            $form->text('username','名称');
+            $form->display('username','账号');
+            $form->text('nickname','昵称');
             $form->image('avatar','头像');
         });
     }

@@ -96,6 +96,7 @@ class ArticleController extends Controller
             $form->select('cate_id','分类')->options(Category::pluck('name','id'));
             $form->text('title','标题');
             $form->text('hits','点击量');
+            $form->textarea('content','内容');
             $form->display('created_at','发布时间');
         });
     }

@@ -157,8 +157,9 @@
                 <div class="panel-footer text-right remove-padding-horizontal pager-footer">
                     <!-- Pager -->
 
+                    @if(count($articles) !== 0)
                         {{$articles->links()}}
-
+@endif
                 </div>
             </div>
 

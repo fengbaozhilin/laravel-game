@@ -9,6 +9,7 @@ class Category extends Model
     //
     protected  $table='categorys';
     protected $guarded=[];
+    public $timestamps=false;
 
     public function getCreatedAtAttribute($value)
     {
