@@ -37,7 +37,7 @@
 
     var socket = new WebSocket('ws://127.0.0.1:5656');
     socket.onopen = function(event) {
-        alert('连接成功');
+//        alert('连接成功');
     };
 
     socket.onmessage = function(event) {
@@ -57,5 +57,14 @@
 
 
     });
+</script>
+<script>
+    function KeyDown()
+    {
+        if (event.keyCode == 13)
+        {
+
+        }
+    }
 </script>
 

@@ -103,7 +103,7 @@
                         <a href="{{url('/user/'.$friend->user['id'])}}" title="snower">
 
                             <!-- <img class="avatar-topnav" alt="snower" src=""> -->
-                            <img class="media-object img-thumbnail avatar avatar-small inline-block " src="{{$friend->user['avatar']}}">
+                            <img class="media-object img-thumbnail avatar avatar-small inline-block " src="{{asset($friend->user['avatar'])}}">
 
                             {{$friend->user['nickname']}}
                         </a>

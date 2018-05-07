@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Models\Comment;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class ArticleController extends Controller
 {
@@ -33,8 +34,12 @@ class ArticleController extends Controller
             $count_comment  = count($article->comment);
 
         return view('articleDetail',['article'=>$article,'count_comment'=>$count_comment]);
+
+
         }else{
-            var_dump(1);
+
+           return '<script>alert("文章不存在");window.history.go(-1);</script>';
+
         }
 
 
@@ -60,6 +65,18 @@ class ArticleController extends Controller
 
             $user = $this->getUser();
 
+          $validator =  Validator::make(['name'=>$request->title],[
+                'name'=>'required|max:255',
+            ]);
+
+            if($validator->fails()){
+
+                $this->msg_status(200);
+
+                return $this->error();
+            }
+
+
             try {
 
                 Article::create(['user_id'=> $user->id,'cate_id'=>$request->cate_id,'name'=>$request->title,'content'=>$request->a_content]);
@@ -70,6 +87,7 @@ class ArticleController extends Controller
 
                 return $this->error();
             }
+            $this->msg_status();
 
             return $this->success();
         } else {

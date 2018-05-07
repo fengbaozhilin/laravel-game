@@ -37,7 +37,7 @@
             </button>
 
             <a href="/" class="navbar-brand">
-                <img src="https://lccdn.phphub.org/uploads/sites/hG5JuDSqZ7Y26Kuh0Qat8EYv6XNT0fGc.png" alt="Laravel China" style=""/>
+                <img src="https://lccdn.phphub.org/uploads/sites/hG5JuDSqZ7Y26Kuh0Qat8EYv6XNT0fGc.png" alt="黄智健" style=""/>
             </a>
         </div>
 
@@ -47,7 +47,7 @@
                 @foreach($category as $value)
                     <li class="" ><a @if(isset($cate) && $cate == $value->id) class="active"  @endif href="{{url('/cate/'.$value->id)}}" >{{$value->name}}</a></li>
                 @endforeach
-
+                <li class="" ><a  href="{{url('/chat')}}" >聊天室</a></li>
 
 
 
@@ -55,8 +55,9 @@
 
             <div class="navbar-right">
 
-                <form method="GET" action="https://laravel-china.org/search" accept-charset="UTF-8" class="navbar-form navbar-left hidden-sm hidden-md">
+                <form method="GET" action="{{url('search')}}" accept-charset="UTF-8" class="navbar-form navbar-left hidden-sm hidden-md">
                     <div class="form-group">
+
                         <input class="form-control search-input mac-style" placeholder="搜索" name="q" type="text" value="">
 
                     </div>

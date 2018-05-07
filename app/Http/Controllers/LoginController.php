@@ -88,7 +88,7 @@ class LoginController extends Controller
         }
 
         if ($request->code == Cache::get($request->username) && $request->username == Cache::get('username')) {
-          $user =  User::create(['username' => $request->username, 'password' => $request->password, 'avatar' => 'https://lccdn.phphub.org/uploads/avatars/21030_1515634349.jpg?imageView2/1/w/100/h/100']);
+          $user =  User::create(['username' => $request->username,'nickname' => $request->username,'password' => $request->password, 'avatar' => 'https://lccdn.phphub.org/uploads/avatars/21030_1515634349.jpg?imageView2/1/w/100/h/100']);
 
             $this->msg_status(); //登陆状态
 

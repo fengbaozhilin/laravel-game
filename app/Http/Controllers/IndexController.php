@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\Test;
 use App\Models\Article;
 use App\Models\Category;
 use Illuminate\Http\Request;
@@ -93,6 +94,26 @@ class IndexController extends Controller
             'rand_articles'=>$rand_articles
         ]);
 
+
+    }
+
+    public function search(Request $request){
+
+      $articles =   Article::where('name','like','%'.$request->q.'%');
+
+        $articles = $articles->paginate(100);
+
+        return view('cate', [
+            'cate' => 'search',
+            'articles' => $articles,
+        ]);
+
+    }
+
+
+    public function test(){
+
+        $this->dispatch(new Test());
 
     }
 }

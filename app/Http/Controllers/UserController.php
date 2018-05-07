@@ -55,14 +55,19 @@ class UserController extends Controller
     }
 
     //编辑页面
-    public function edit($id)
+    public function edit($id,Request $request)
     {
 
         if (session('user_id') == $id) {
 
             $user = User::find($id);
 
-            return view('edit', ['user' => $user]);
+            if ($request->filter) {
+                $filter = $request->filter;
+            }else{
+                $filter = null;
+            }
+            return view('edit', ['user' => $user,'filter'=>$filter,'user_id'=>$id]);
 
         } else {
             $this->msg_status(200);

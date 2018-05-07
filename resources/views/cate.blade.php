@@ -42,6 +42,7 @@
 
             <div class="panel-heading">
 
+                @if($cate!=='search')
                 <ul class="list-inline topic-filter">
                     <li class="popover-with-html" data-content="综合"><a
                                 href="{{url('/cate/'.$cate)}}" @if(isset($_GET['filter']))  @else class="active"   @endif>综合</a></li>
@@ -52,6 +53,8 @@
 
 
                 </ul>
+                @else
+                    @endif
 
                 <div class="clearfix"></div>
             </div>
