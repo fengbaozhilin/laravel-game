@@ -94,7 +94,16 @@ class ArticleController extends Controller
         return Admin::form(Article::class, function (Form $form) {
 
             $form->select('cate_id','分类')->options(Category::pluck('name','id'));
-            $form->text('title','标题');
+
+            $states = [
+                'on'  => ['value' => 1, 'text' => '打开', 'color' => 'primary'],
+                'off' => ['value' => 0, 'text' => '关闭', 'color' => 'default'],
+            ];
+
+            $form->switch('is_index','是否置顶')->states($states);
+
+            $form->text('name','标题');
+            $form->image('thumb','封面');
             $form->text('hits','点击量');
             $form->textarea('content','内容');
             $form->display('created_at','发布时间');

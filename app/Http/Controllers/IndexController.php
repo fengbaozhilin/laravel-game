@@ -37,10 +37,9 @@ class IndexController extends Controller
                 $articles = $articles->OrderBy('created_at', 'desc');
             }
 
-            if(count($articles) !== 0)
-            {
+
                 $articles = $articles->paginate(5);
-            }
+
 
 
 

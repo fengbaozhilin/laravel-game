@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}" />
-    <title>沙发</title>
+    <title>Dota2</title>
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="https://dn-phphub.qbox.me//assets/css/1e2676fd224cc66e5027-styles.css">
@@ -37,7 +37,7 @@
             </button>
 
             <a href="/" class="navbar-brand">
-                <img src="https://lccdn.phphub.org/uploads/sites/hG5JuDSqZ7Y26Kuh0Qat8EYv6XNT0fGc.png" alt="黄智健" style=""/>
+                <img src="http://www.dota2.com.cn/images/header/dota2.home.log.png" alt="黄智健" style=""/>
             </a>
         </div>
 

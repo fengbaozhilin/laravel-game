@@ -11,11 +11,11 @@
             <i class="fa fa-paint-brush text-md"></i> 个人中心
         </a>
 
-        <a style="margin: 8px;" class="btn btn-default" href="https://laravel-china.org/links/share">
-            <i class="fa fa-link text-md"></i> 我的文章
+        <a style="margin: 8px;" class="btn btn-default" href="{{url('chat')}}">
+            <i class="fa fa-link text-md"></i> 聊天互动
         </a>
         <a style="margin: 8px;" class="btn btn-default"
-           href="https://laravel-china.org/topics/create?category_id=4">
+           href="">
             <i class="fa fa-question-circle text-md"></i> 提个问题
         </a>
     </div>
@@ -32,7 +32,7 @@
         <ul class="list">
             @if(isset($rand_articles))
                 @foreach($rand_articles as $rand_article)
-            <li style="border: 1px solid;">
+            <li style="">
                 <a href="{{url('articleDetail/'.$rand_article->id)}}"
                    title="">
                     {{$rand_article->name}}

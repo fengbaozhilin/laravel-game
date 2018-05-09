@@ -40,8 +40,8 @@
                 <ul>
                  @foreach($articles_indexs as $articles_index)
                     <li>
-                        <a href="{{url('login')}}">
-                            <img src="{{$articles_index->thumb?$articles_index->thumb:'https://ss0.bdstatic.com/94oJfD_bAAcT8t7mm9GUKT-xh_/timg?image&quality=100&size=b4000_4000&sec=1523972366&di=de038de21529f7222aa841128a42e1fe&src=http://dota2hq.eu/_ph/1/371177432.jpg'}}" alt="" width="640" height="480">
+                        <a href="{{url('/articleDetail/'.$articles_index->id)}}">
+                            <img src="{{$articles_index->thumb}}" alt="" width="640" height="480">
                         </a>
                     </li>
                      @endforeach
@@ -67,9 +67,7 @@
                     <li class="popover-with-html" data-content="点击量"><a
                                 href="{{url('/?filter=hits')}}" @if(isset($_GET['filter']) && $_GET['filter']=='hits') class="active" @else @endif>点击量</a>
                     </li>
-                    <li class="popover-with-html" data-content="待续"><a
-                                href="">待续</a>
-                    </li>
+
 
 
                 </ul>
@@ -157,9 +155,9 @@
                 <div class="panel-footer text-right remove-padding-horizontal pager-footer">
                     <!-- Pager -->
 
-                    @if(count($articles) !== 0)
+
                         {{$articles->links()}}
-@endif
+
                 </div>
             </div>
 

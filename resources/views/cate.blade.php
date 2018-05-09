@@ -48,8 +48,7 @@
                                 href="{{url('/cate/'.$cate)}}" @if(isset($_GET['filter']))  @else class="active"   @endif>综合</a></li>
                     <li class="popover-with-html" data-content="点击量"><a
                                 href="{{url('/cate/'.$cate.'?filter=hits')}}" @if(isset($_GET['filter']) && $_GET['filter']=='hits') class="active" @else @endif>点击量</a></li>
-                    <li class="popover-with-html" data-content="待续"><a
-                                href="">待续</a></li>
+
 
 
                 </ul>

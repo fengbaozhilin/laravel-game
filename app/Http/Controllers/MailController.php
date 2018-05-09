@@ -17,7 +17,7 @@ class MailController extends Controller
         date_default_timezone_set("PRC");
 
         //时间判断
-        if(time()-Cache::get('send_time')<60){
+        if(time()-Cache::get('send_time'.$request->username)<60){
 
             return $this->error('120');
 
@@ -35,7 +35,7 @@ class MailController extends Controller
         // Mail::send()的返回值为空，所以可以其他方法进行判断
         try {
 
-            Cache::put('send_time',time(),2);
+            Cache::put('send_time'.$to,time(),2);
 
             Mail::send('email', ['name' => $name,'validate_code'=>$validate_code], function ($message) use ($to){
                 $message->to($to)->subject('hzj233-注册验证码');

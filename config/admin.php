@@ -71,9 +71,11 @@ return [
         'disk' => 'admin',
 
         'directory' => [
-            'image' => 'images',
+            'image' => 'images/image',
             'file'  => 'files',
         ],
+
+        'host' =>  env('APP_URL', 'http://localhost')  . '',
     ],
 
     /*
